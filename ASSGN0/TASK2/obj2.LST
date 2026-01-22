@@ -1,0 +1,47 @@
+A51 MACRO ASSEMBLER  OBJ2                                                                 01/13/2026 16:34:06 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN obj2.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE obj2.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+                       3     
+8100                   4                     ORG 8100H
+                       5                     
+8100 7800              6                     MOV R0, #00H
+8102 7901              7                     MOV R1, #01H
+8104 7405              8                     MOV A, #05H
+8106 909550            9                     MOV DPTR, #9550H
+                      10     
+8109 9409             11                     SUBB A, #09H
+810B 4004             12                     JC LESS
+                      13                     
+810D E8               14                     MOV A, R0
+810E F0               15                     MOVX @DPTR, A
+810F 80FE             16                     PHERE: SJMP PHERE
+                      17                     
+8111                  18                     LESS:
+8111 E9               19                     MOV A, R1
+8112 F0               20                     MOVX @DPTR, A
+                      21                             END
+                                             
+A51 MACRO ASSEMBLER  OBJ2                                                                 01/13/2026 16:34:06 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+LESS . . . . . . .  C ADDR   8111H   A   
+PHERE. . . . . . .  C ADDR   810FH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

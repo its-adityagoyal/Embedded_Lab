@@ -1,0 +1,52 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/13/2026  16:34:06  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE obj2.obj TO obj2
+
+
+INPUT MODULES INCLUDED:
+  obj2.obj (OBJ2)
+
+
+LINK MAP OF MODULE:  obj2 (OBJ2)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     8113H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  obj2 (OBJ2)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        OBJ2
+  C:8111H         SYMBOL        LESS
+  C:810FH         SYMBOL        PHERE
+  C:8100H         LINE#         6
+  C:8102H         LINE#         7
+  C:8104H         LINE#         8
+  C:8106H         LINE#         9
+  C:8109H         LINE#         11
+  C:810BH         LINE#         12
+  C:810DH         LINE#         14
+  C:810EH         LINE#         15
+  C:810FH         LINE#         16
+  C:8111H         LINE#         19
+  C:8112H         LINE#         20
+  -------         ENDMOD        OBJ2
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0013H BYTE ( 0%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33043
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

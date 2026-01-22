@@ -1,0 +1,140 @@
+A51 MACRO ASSEMBLER  EXP1                                                                 01/20/2026 16:39:40 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN exp1.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE exp1.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+                       3     
+                       4     
+8100                   5                     ORG 8100H
+                       6                     
+8100 7800              7                     MOV R0, #00H
+                       8                     
+8102                   9                     LOOP1:
+8102 740A             10                             MOV A, #0AH
+8104 C3               11                             CLR C
+8105 98               12                             SUBB A, R0
+8106 4023             13                             JC BINARY
+                      14                             
+8108 08               15                             INC R0
+8109 909000           16                             MOV DPTR, #9000H
+810C 7B00             17                             MOV R3, #00H
+                      18                             
+810E                  19                             LOOP2:
+810E 7408             20                                     MOV A, #08H
+8110 C3               21                                     CLR C
+8111 9B               22                                     SUBB A, R3
+8112 40EE             23                                     JC LOOP1
+                      24                             
+8114 E0               25                                     MOVX A, @DPTR
+8115 F9               26                                     MOV R1, A
+8116 A3               27                                     INC DPTR
+8117 E0               28                                     MOVX A, @DPTR
+8118 FA               29                                     MOV R2, A
+                      30                                     
+8119 C3               31                                     CLR C
+811A 99               32                                     SUBB A, R1
+811B 4003             33                                     JC LESS
+                      34                                     
+811D 0B               35                                     INC R3
+811E 80EE             36                                     SJMP LOOP2
+                      37                     
+8120                  38                                     LESS:
+8120 E9               39                                             MOV A, R1
+8121 F0               40                                             MOVX @DPTR, A
+8122 1582             41                                             DEC DPL
+8124 EA               42                                             MOV A, R2
+8125 F0               43                                             MOVX @DPTR, A
+8126 0582             44                                             INC DPL
+                      45                                             
+8128 0B               46                                             INC R3
+8129 80E3             47                                             SJMP LOOP2
+                      48                             
+812B                  49                     BINARY:
+812B 909500           50                             MOV DPTR, #9500H
+812E E0               51                             MOVX A, @DPTR
+812F FF               52                             MOV R7, A
+                      53                             
+8130 909550           54                             MOV DPTR, #9550H
+8133 74FF             55                             MOV A, #0FFH
+8135 F0               56                             MOVX @DPTR, A
+                      57                             
+                      58                             
+A51 MACRO ASSEMBLER  EXP1                                                                 01/20/2026 16:39:40 PAGE     2
+
+8136 7900             59                             MOV R1, #00H
+8138 7A09             60                             MOV R2, #09H
+                      61                             
+813A 909000           62                             MOV DPTR, #9000H
+                      63                             
+813D                  64                             WHILE:
+813D EA               65                                     MOV A,R2
+813E C3               66                                     CLR C
+813F 99               67                                     SUBB A,R1
+                      68                                     
+8140 4022             69                                     JC HERE
+                      70                                     
+8142 EA               71                                     MOV A, R2
+8143 29               72                                     ADD A,R1
+8144 75F002           73                                     MOV B, #02H
+8147 84               74                                     DIV AB
+8148 F8               75                                     MOV R0, A
+                      76                                     
+8149 F582             77                                     MOV DPL, A
+814B E0               78                                     MOVX A, @DPTR
+                      79                                     
+814C B50707           80                                     CJNE A, 07H, NOTEQUAL
+                      81                                     
+814F 909550           82                                     MOV DPTR, #9550H
+8152 E8               83                                     MOV A, R0
+8153 F0               84                                     MOVX @DPTR, A
+8154 800E             85                                     SJMP HERE
+                      86                                     
+8156                  87                                     NOTEQUAL:
+8156 C3               88                                             CLR C
+8157 9F               89                                             SUBB A, R7
+8158 4005             90                                             JC RIGHT
+                      91                                             
+815A E8               92                                             MOV A, R0
+815B 14               93                                             DEC A
+815C FA               94                                             MOV R2, A
+815D 80DE             95                                             SJMP WHILE
+                      96                                             
+815F                  97                                             RIGHT:
+815F E8               98                                                     MOV A, R0
+8160 04               99                                                     INC A
+8161 F9              100                                                     MOV R1, A
+8162 80D9            101                                                     SJMP WHILE
+                     102                     
+8164 80FE            103                     HERE: SJMP HERE
+                     104                             END
+                                                     
+A51 MACRO ASSEMBLER  EXP1                                                                 01/20/2026 16:39:40 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+BINARY . . . . . .  C ADDR   812BH   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+HERE . . . . . . .  C ADDR   8164H   A   
+LESS . . . . . . .  C ADDR   8120H   A   
+LOOP1. . . . . . .  C ADDR   8102H   A   
+LOOP2. . . . . . .  C ADDR   810EH   A   
+NOTEQUAL . . . . .  C ADDR   8156H   A   
+RIGHT. . . . . . .  C ADDR   815FH   A   
+WHILE. . . . . . .  C ADDR   813DH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
