@@ -1,0 +1,104 @@
+A51 MACRO ASSEMBLER  TASK2                                                                01/27/2026 16:18:22 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN TASK2.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE TASK2.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+                       3     
+                       4     
+                       5     
+                       6     
+8100                   7                     ORG 8100H
+                       8                     
+8100 909500            9                     MOV DPTR, #9500H
+8103 E0               10                     MOVX A, @DPTR
+8104 F8               11                     MOV R0, A
+                      12                     
+8105 0582             13                     INC DPL
+8107 E0               14                     MOVX A, @DPTR
+8108 FD               15                     MOV R5, A
+                      16                     
+8109 7901             17                     MOV R1, #01H
+                      18                     
+810B 0582             19                     INC DPL
+810D E0               20                     MOVX A, @DPTR
+810E FF               21                     MOV R7, A
+810F 7E00             22                     MOV R6, #00H
+                      23                     
+8111                  24                     LOOP:
+8111 C3               25                             CLR C
+8112 E8               26                             MOV A, R0
+8113 99               27                             SUBB A, R1
+8114 401F             28                             JC SAVE
+                      29                             
+                      30                             
+8116 EF               31                             MOV A, R7
+8117 8DF0             32                             MOV B, R5
+8119 A4               33                             MUL AB
+811A FF               34                             MOV R7, A
+811B ACF0             35                             MOV R4, B
+                      36                             
+811D EE               37                             MOV A, R6
+811E 8DF0             38                             MOV B, R5
+8120 A4               39                             MUL AB
+8121 2C               40                             ADD A, R4
+8122 FE               41                             MOV R6, A
+                      42                             
+                      43                             
+8123 0582             44                             INC DPL
+8125 E0               45                             MOVX A, @DPTR
+                      46                             
+8126 C3               47                             CLR C
+8127 2F               48                             ADD A, R7
+8128 FF               49                             MOV R7, A
+8129 4003             50                             JC CARRYA
+                      51                             
+812B 09               52                             INC R1
+812C 80E3             53                             SJMP LOOP
+                      54                             
+812E                  55                             CARRYA:
+812E EE               56                                     MOV A, R6
+812F 2401             57                                     ADD A, #01H
+8131 FE               58                                     MOV R6, A
+A51 MACRO ASSEMBLER  TASK2                                                                01/27/2026 16:18:22 PAGE     2
+
+8132 09               59                                     INC R1
+8133 80DC             60                                     SJMP LOOP
+                      61                                     
+8135                  62                     SAVE:
+8135 909551           63                             MOV DPTR, #9551H
+8138 EF               64                             MOV A, R7
+8139 F0               65                             MOVX @DPTR, A
+813A 1582             66                             DEC DPL
+813C EE               67                             MOV A, R6
+813D F0               68                             MOVX @DPTR, A
+                      69                             
+813E 8000             70                             SJMP HERE
+                      71                             
+8140 80FE             72                     HERE: SJMP HERE
+                      73                             END
+A51 MACRO ASSEMBLER  TASK2                                                                01/27/2026 16:18:22 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+CARRYA . . . . . .  C ADDR   812EH   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+HERE . . . . . . .  C ADDR   8140H   A   
+LOOP . . . . . . .  C ADDR   8111H   A   
+SAVE . . . . . . .  C ADDR   8135H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
