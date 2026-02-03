@@ -1,0 +1,90 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/03/2026  15:30:32  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE TASK5.obj TO TASK5
+
+
+INPUT MODULES INCLUDED:
+  TASK5.obj (TASK5)
+
+
+LINK MAP OF MODULE:  TASK5 (TASK5)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     8146H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  TASK5 (TASK5)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TASK5
+  C:810EH         SYMBOL        CONTINUE_LOOP1
+  C:811CH         SYMBOL        CONTINUE_LOOP2
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  C:8132H         SYMBOL        INCREMENT
+  C:8144H         SYMBOL        INF_LOOP
+  C:8102H         SYMBOL        LOOP1
+  C:8110H         SYMBOL        LOOP2
+  C:8135H         SYMBOL        PRINT
+  C:813CH         SYMBOL        QUIT
+  C:8100H         LINE#         7
+  C:8102H         LINE#         12
+  C:8103H         LINE#         13
+  C:8105H         LINE#         14
+  C:8108H         LINE#         15
+  C:8109H         LINE#         16
+  C:810CH         LINE#         18
+  C:810EH         LINE#         21
+  C:8110H         LINE#         26
+  C:8111H         LINE#         27
+  C:8113H         LINE#         28
+  C:8116H         LINE#         29
+  C:8117H         LINE#         30
+  C:811AH         LINE#         32
+  C:811CH         LINE#         35
+  C:811FH         LINE#         36
+  C:8120H         LINE#         37
+  C:8121H         LINE#         38
+  C:8123H         LINE#         39
+  C:8124H         LINE#         40
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/03/2026  15:30:32  PAGE 2
+
+
+  C:8125H         LINE#         42
+  C:8128H         LINE#         43
+  C:8129H         LINE#         44
+  C:812BH         LINE#         45
+  C:812CH         LINE#         47
+  C:812FH         LINE#         49
+  C:8130H         LINE#         51
+  C:8132H         LINE#         54
+  C:8133H         LINE#         55
+  C:8135H         LINE#         60
+  C:8138H         LINE#         61
+  C:8139H         LINE#         62
+  C:813AH         LINE#         64
+  C:813CH         LINE#         68
+  C:813FH         LINE#         69
+  C:8141H         LINE#         70
+  C:8142H         LINE#         72
+  C:8144H         LINE#         74
+  -------         ENDMOD        TASK5
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0046H BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33094
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

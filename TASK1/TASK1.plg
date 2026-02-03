@@ -1,0 +1,21 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\bt-17\8051\github\TASK1\TASK1.uvproj
+Project File Date:  02/03/2026
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling TASK1.A51...
+linking...
+Program Size: data=8.0 xdata=0 code=33043
+creating hex file from "TASK1"...
+"TASK1" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling TASK1.A51...
+linking...
+Program Size: data=8.0 xdata=0 code=33053
+creating hex file from "TASK1"...
+"TASK1" - 0 Error(s), 0 Warning(s).

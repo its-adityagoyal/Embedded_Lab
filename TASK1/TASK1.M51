@@ -1,0 +1,56 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/03/2026  15:41:12  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE TASK1.obj TO TASK1
+
+
+INPUT MODULES INCLUDED:
+  TASK1.obj (TASK1)
+
+
+LINK MAP OF MODULE:  TASK1 (TASK1)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     811DH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  TASK1 (TASK1)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TASK1
+  C:8100H         LINE#         8
+  C:8103H         LINE#         9
+  C:8105H         LINE#         10
+  C:8106H         LINE#         11
+  C:8109H         LINE#         12
+  C:810BH         LINE#         13
+  C:810CH         LINE#         16
+  C:810FH         LINE#         17
+  C:8110H         LINE#         18
+  C:8111H         LINE#         19
+  C:8114H         LINE#         20
+  C:8115H         LINE#         21
+  C:8116H         LINE#         24
+  C:8117H         LINE#         25
+  C:8118H         LINE#         26
+  C:811BH         LINE#         27
+  C:811CH         LINE#         28
+  -------         ENDMOD        TASK1
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 001DH BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33053
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
