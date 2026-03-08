@@ -1,0 +1,137 @@
+A51 MACRO ASSEMBLER  TASK8                                                                03/05/2026 15:21:04 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN TASK8.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE TASK8.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+8100                   3                     ORG 8100H
+                       4                     
+8100 90E803            5                     MOV DPTR, #0E803H
+8103 7480              6                     MOV A, #80H
+8105 F0                7                     MOVX @DPTR, A
+                       8                     
+8106                   9                     WHILE:
+8106 758390           10                             MOV DPH, #90H
+8109 7400             11                             MOV A, #00H
+810B F582             12                             MOV DPL, A
+810D E0               13                             MOVX A, @DPTR
+810E 90E800           14                             MOV DPTR, #0E800H
+8111 F0               15                             MOVX @DPTR, A
+8112 3195             16                             ACALL DELAY
+                      17                             
+8114 758390           18                             MOV DPH, #90H
+8117 7401             19                             MOV A, #01H
+8119 F582             20                             MOV DPL, A
+811B E0               21                             MOVX A, @DPTR
+811C 90E800           22                             MOV DPTR, #0E800H
+811F F0               23                             MOVX @DPTR, A
+8120 3195             24                             ACALL DELAY
+                      25                             
+8122 758390           26                             MOV DPH, #90H
+8125 7402             27                             MOV A, #02H
+8127 F582             28                             MOV DPL, A
+8129 E0               29                             MOVX A, @DPTR
+812A 90E800           30                             MOV DPTR, #0E800H
+812D F0               31                             MOVX @DPTR, A
+812E 3195             32                             ACALL DELAY
+                      33                             
+8130 758390           34                             MOV DPH, #90H
+8133 7403             35                             MOV A, #03H
+8135 F582             36                             MOV DPL, A
+8137 E0               37                             MOVX A, @DPTR
+8138 90E800           38                             MOV DPTR, #0E800H
+813B F0               39                             MOVX @DPTR, A
+813C 3195             40                             ACALL DELAY
+                      41                             
+813E 758390           42                             MOV DPH, #90H
+8141 7404             43                             MOV A, #04H
+8143 F582             44                             MOV DPL, A
+8145 E0               45                             MOVX A, @DPTR
+8146 90E800           46                             MOV DPTR, #0E800H
+8149 F0               47                             MOVX @DPTR, A
+814A 3195             48                             ACALL DELAY
+                      49                             
+814C 758390           50                             MOV DPH, #90H
+814F 7405             51                             MOV A, #05H
+8151 F582             52                             MOV DPL, A
+8153 E0               53                             MOVX A, @DPTR
+8154 90E800           54                             MOV DPTR, #0E800H
+8157 F0               55                             MOVX @DPTR, A
+8158 3195             56                             ACALL DELAY
+                      57                             
+815A 758390           58                             MOV DPH, #90H
+A51 MACRO ASSEMBLER  TASK8                                                                03/05/2026 15:21:04 PAGE     2
+
+815D 7406             59                             MOV A, #06H
+815F F582             60                             MOV DPL, A
+8161 E0               61                             MOVX A, @DPTR
+8162 90E800           62                             MOV DPTR, #0E800H
+8165 F0               63                             MOVX @DPTR, A
+8166 3195             64                             ACALL DELAY
+                      65                             
+8168 758390           66                             MOV DPH, #90H
+816B 7407             67                             MOV A, #07H
+816D F582             68                             MOV DPL, A
+816F E0               69                             MOVX A, @DPTR
+8170 90E800           70                             MOV DPTR, #0E800H
+8173 F0               71                             MOVX @DPTR, A
+8174 3195             72                             ACALL DELAY
+                      73                             
+8176 758390           74                             MOV DPH, #90H
+8179 7408             75                             MOV A, #08H
+817B F582             76                             MOV DPL, A
+817D E0               77                             MOVX A, @DPTR
+817E 90E800           78                             MOV DPTR, #0E800H
+8181 F0               79                             MOVX @DPTR, A
+8182 3195             80                             ACALL DELAY
+                      81                             
+8184 758390           82                             MOV DPH, #90H
+8187 7409             83                             MOV A, #09H
+8189 F582             84                             MOV DPL, A
+818B E0               85                             MOVX A, @DPTR
+818C 90E800           86                             MOV DPTR, #0E800H
+818F F0               87                             MOVX @DPTR, A
+8190 3195             88                             ACALL DELAY
+                      89                                                     
+8192 028106           90                             LJMP WHILE
+                      91                     
+8195                  92                     DELAY:
+8195 7B08             93                             MOV R3, #8
+8197 7AFF             94                             LOP3: MOV R2, #255
+8199 79E2             95                             LOP2: MOV R1, #226
+819B D9FE             96                             LOP1: DJNZ R1, LOP1
+819D DAFA             97                             DJNZ R2, LOP2
+819F DBF6             98                             DJNZ R3, LOP3                   
+81A1 22               99                             RET
+                     100                     
+81A2                 101                     HERE: 
+81A2 80FE            102                             SJMP HERE
+                     103                     
+                     104                     END
+A51 MACRO ASSEMBLER  TASK8                                                                03/05/2026 15:21:04 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   8195H   A   
+DPH. . . . . . . .  D ADDR   0083H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+HERE . . . . . . .  C ADDR   81A2H   A   
+LOP1 . . . . . . .  C ADDR   819BH   A   
+LOP2 . . . . . . .  C ADDR   8199H   A   
+LOP3 . . . . . . .  C ADDR   8197H   A   
+WHILE. . . . . . .  C ADDR   8106H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,19 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\bt-17\8051\03_03_2026\Exp3A\TASK8.uvproj
+Project File Date:  03/05/2026
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling TASK8.A51...
+TASK8.A51(90): error A51: TARGET OUT OF RANGE
+Target not created
+Rebuild target 'Target 1'
+assembling TASK8.A51...
+linking...
+Program Size: data=8.0 xdata=0 code=33188
+creating hex file from "TASK8"...
+"TASK8" - 0 Error(s), 0 Warning(s).

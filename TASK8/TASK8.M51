@@ -1,0 +1,135 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/05/2026  15:21:04  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE TASK8.obj TO TASK8
+
+
+INPUT MODULES INCLUDED:
+  TASK8.obj (TASK8)
+
+
+LINK MAP OF MODULE:  TASK8 (TASK8)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     81A4H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  TASK8 (TASK8)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TASK8
+  C:8195H         SYMBOL        DELAY
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  C:81A2H         SYMBOL        HERE
+  C:819BH         SYMBOL        LOP1
+  C:8199H         SYMBOL        LOP2
+  C:8197H         SYMBOL        LOP3
+  C:8106H         SYMBOL        WHILE
+  C:8100H         LINE#         5
+  C:8103H         LINE#         6
+  C:8105H         LINE#         7
+  C:8106H         LINE#         10
+  C:8109H         LINE#         11
+  C:810BH         LINE#         12
+  C:810DH         LINE#         13
+  C:810EH         LINE#         14
+  C:8111H         LINE#         15
+  C:8112H         LINE#         16
+  C:8114H         LINE#         18
+  C:8117H         LINE#         19
+  C:8119H         LINE#         20
+  C:811BH         LINE#         21
+  C:811CH         LINE#         22
+  C:811FH         LINE#         23
+  C:8120H         LINE#         24
+  C:8122H         LINE#         26
+  C:8125H         LINE#         27
+  C:8127H         LINE#         28
+  C:8129H         LINE#         29
+  C:812AH         LINE#         30
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2026  15:21:04  PAGE 2
+
+
+  C:812DH         LINE#         31
+  C:812EH         LINE#         32
+  C:8130H         LINE#         34
+  C:8133H         LINE#         35
+  C:8135H         LINE#         36
+  C:8137H         LINE#         37
+  C:8138H         LINE#         38
+  C:813BH         LINE#         39
+  C:813CH         LINE#         40
+  C:813EH         LINE#         42
+  C:8141H         LINE#         43
+  C:8143H         LINE#         44
+  C:8145H         LINE#         45
+  C:8146H         LINE#         46
+  C:8149H         LINE#         47
+  C:814AH         LINE#         48
+  C:814CH         LINE#         50
+  C:814FH         LINE#         51
+  C:8151H         LINE#         52
+  C:8153H         LINE#         53
+  C:8154H         LINE#         54
+  C:8157H         LINE#         55
+  C:8158H         LINE#         56
+  C:815AH         LINE#         58
+  C:815DH         LINE#         59
+  C:815FH         LINE#         60
+  C:8161H         LINE#         61
+  C:8162H         LINE#         62
+  C:8165H         LINE#         63
+  C:8166H         LINE#         64
+  C:8168H         LINE#         66
+  C:816BH         LINE#         67
+  C:816DH         LINE#         68
+  C:816FH         LINE#         69
+  C:8170H         LINE#         70
+  C:8173H         LINE#         71
+  C:8174H         LINE#         72
+  C:8176H         LINE#         74
+  C:8179H         LINE#         75
+  C:817BH         LINE#         76
+  C:817DH         LINE#         77
+  C:817EH         LINE#         78
+  C:8181H         LINE#         79
+  C:8182H         LINE#         80
+  C:8184H         LINE#         82
+  C:8187H         LINE#         83
+  C:8189H         LINE#         84
+  C:818BH         LINE#         85
+  C:818CH         LINE#         86
+  C:818FH         LINE#         87
+  C:8190H         LINE#         88
+  C:8192H         LINE#         90
+  C:8195H         LINE#         93
+  C:8197H         LINE#         94
+  C:8199H         LINE#         95
+  C:819BH         LINE#         96
+  C:819DH         LINE#         97
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2026  15:21:04  PAGE 3
+
+
+  C:819FH         LINE#         98
+  C:81A1H         LINE#         99
+  C:81A2H         LINE#         102
+  -------         ENDMOD        TASK8
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00A4H BYTE ( 8%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33188
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
