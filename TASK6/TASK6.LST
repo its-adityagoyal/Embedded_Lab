@@ -1,0 +1,74 @@
+A51 MACRO ASSEMBLER  TASK6                                                                02/10/2026 16:45:48 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN TASK6.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE TASK6.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+8100                   3                     ORG 8100H
+8100 C292              4                     CLR P1.2
+8102 C293              5                     CLR P1.3
+8104 C294              6                     CLR P1.4
+8106 C295              7                     CLR P1.5
+                       8                     
+8108                   9                     START:
+8108 D292             10                             SETB P1.2
+810A 312A             11                             ACALL DELAY
+810C C292             12                             CLR P1.2
+810E 312A             13                             ACALL DELAY
+                      14                             
+8110 D293             15                             SETB P1.3
+8112 312A             16                             ACALL DELAY
+8114 C293             17                             CLR P1.3
+8116 312A             18                             ACALL DELAY
+                      19                             
+8118 D294             20                             SETB P1.4
+811A 312A             21                             ACALL DELAY
+811C C294             22                             CLR P1.4
+811E 312A             23                             ACALL DELAY
+                      24                             
+8120 D295             25                             SETB P1.5
+8122 312A             26                             ACALL DELAY
+8124 C295             27                             CLR P1.5
+8126 312A             28                             ACALL DELAY
+                      29                             
+8128 80DE             30                             SJMP START
+                      31                     
+812A                  32                     DELAY:
+812A 7B08             33                             MOV R3, #8
+812C 7AFF             34                             LOOP3: MOV R2, #255
+812E 79E2             35                             LOOP2: MOV R1, #226
+8130 D9FE             36                             LOOP1: DJNZ R1, LOOP1
+8132 DAFA             37                             DJNZ R2, LOOP2
+8134 DBF6             38                             DJNZ R3, LOOP3                  
+8136 22               39                             RET
+                      40                     
+8137 80FE             41                     HERE: SJMP HERE
+                      42                     
+                      43                     END
+                                             
+A51 MACRO ASSEMBLER  TASK6                                                                02/10/2026 16:45:48 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   812AH   A   
+HERE . . . . . . .  C ADDR   8137H   A   
+LOOP1. . . . . . .  C ADDR   8130H   A   
+LOOP2. . . . . . .  C ADDR   812EH   A   
+LOOP3. . . . . . .  C ADDR   812CH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+START. . . . . . .  C ADDR   8108H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

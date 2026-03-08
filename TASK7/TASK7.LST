@@ -1,0 +1,116 @@
+A51 MACRO ASSEMBLER  TASK7                                                                02/17/2026 16:14:33 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN TASK7.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE TASK7.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+8100                   3                     ORG 8100H
+                       4                     
+8100 C290              5                     CLR P1.0
+8102 C291              6                     CLR P1.1
+8104 C292              7                     CLR P1.2
+8106 C293              8                     CLR P1.3
+8108 C294              9                     CLR P1.4
+                      10                     
+810A 7800             11                     MOV R0, #00H
+810C 909000           12                     MOV DPTR, #9000H
+                      13     
+810F D295             14                     SETB P1.5
+8111 209531           15                     JB P1.5, START2
+                      16                     
+8114                  17                     START1:
+8114 E8               18                             MOV A, R0
+8115 F582             19                             MOV DPL, A
+                      20                              
+8117 F590             21                             MOV P1, A
+8119 C294             22                             CLR P1.4
+811B E0               23                             MOVX A, @DPTR
+                      24     
+811C C3               25                             CLR C
+811D 9401             26                             SUBB A, #01H
+811F 4012             27                             JC UNSET
+                      28                             
+8121 D294             29                             SETB P1.4
+8123 3166             30                             ACALL DELAY
+8125 08               31                             INC R0
+8126 E8               32                             MOV A, R0
+8127 D295             33                             SETB P1.5
+8129 209519           34                             JB P1.5, START2
+812C B410E5           35                             CJNE A, #10H, START1
+812F 7800             36                             MOV R0, #00H
+8131 80E1             37                             SJMP START1
+                      38                             
+8133                  39                             UNSET:
+8133 C294             40                                     CLR P1.4
+8135 3166             41                                     ACALL DELAY
+8137 08               42                                     INC R0
+8138 E8               43                                     MOV A, R0
+8139 D295             44                                     SETB P1.5
+813B 209507           45                                     JB P1.5, START2
+813E B410D3           46                                     CJNE A, #10H, START1
+8141 7800             47                                     MOV R0, #00H
+8143 80CF             48                                     SJMP START1
+8145                  49                     START2:
+8145 C290             50                             CLR P1.0
+8147 C291             51                             CLR P1.1
+8149 C292             52                             CLR P1.2
+814B C293             53                             CLR P1.3
+814D C294             54                             CLR P1.4
+814F 3166             55                             ACALL DELAY
+                      56                             
+8151 D290             57                             SETB P1.0
+8153 D291             58                             SETB P1.1
+A51 MACRO ASSEMBLER  TASK7                                                                02/17/2026 16:14:33 PAGE     2
+
+8155 D292             59                             SETB P1.2
+8157 D293             60                             SETB P1.3
+8159 D294             61                             SETB P1.4
+815B 3166             62                             ACALL DELAY
+                      63                             
+815D D295             64                             SETB P1.5
+815F 2095E3           65                             JB P1.5, START2
+8162 7800             66                             MOV R0, #00H
+8164 80AE             67                             SJMP START1
+                      68                     
+8166                  69                     DELAY:
+8166 7B08             70                             MOV R3, #8
+8168 7AFF             71                             LOOP3: MOV R2, #255
+816A 79E2             72                             LOOP2: MOV R1, #226
+816C D9FE             73                             LOOP1: DJNZ R1, LOOP1
+816E DAFA             74                             DJNZ R2, LOOP2
+8170 DBF6             75                             DJNZ R3, LOOP3                  
+8172 22               76                             RET
+                      77                     
+8173                  78                     HERE: 
+8173 80FE             79                             SJMP HERE
+                      80                     
+                      81                     END
+A51 MACRO ASSEMBLER  TASK7                                                                02/17/2026 16:14:33 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   8166H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+HERE . . . . . . .  C ADDR   8173H   A   
+LOOP1. . . . . . .  C ADDR   816CH   A   
+LOOP2. . . . . . .  C ADDR   816AH   A   
+LOOP3. . . . . . .  C ADDR   8168H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+START1 . . . . . .  C ADDR   8114H   A   
+START2 . . . . . .  C ADDR   8145H   A   
+UNSET. . . . . . .  C ADDR   8133H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
