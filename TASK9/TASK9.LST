@@ -1,0 +1,195 @@
+A51 MACRO ASSEMBLER  TASK9                                                                03/10/2026 16:00:49 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN TASK9.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE TASK9.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+                       2     
+                       3                     
+                       4                     
+8100                   5                     ORG 8100H
+                       6                     
+                       7                     
+8100 90E803            8                     MOV DPTR, #0E803H
+8103 7480              9                     MOV A, #80H
+8105 F0               10                     MOVX @DPTR, A
+                      11                     
+                      12                     
+8106                  13                     WHILE:
+8106 7900             14                             MOV R1, #00H
+8108 7800             15                             MOV R0, #00H
+810A 319F             16                             ACALL PRINT
+                      17                             
+810C 7900             18                             MOV R1, #00H
+810E 7801             19                             MOV R0, #01H
+8110 319F             20                             ACALL PRINT
+                      21                             
+8112 7900             22                             MOV R1, #00H
+8114 7802             23                             MOV R0, #02H
+8116 319F             24                             ACALL PRINT
+                      25                             
+8118 7900             26                             MOV R1, #00H
+811A 7803             27                             MOV R0, #03H
+811C 319F             28                             ACALL PRINT
+                      29                             
+811E 7900             30                             MOV R1, #00H
+8120 7804             31                             MOV R0, #04H
+8122 319F             32                             ACALL PRINT
+                      33                             
+8124 7900             34                             MOV R1, #00H
+8126 7805             35                             MOV R0, #05H
+8128 319F             36                             ACALL PRINT
+                      37                             
+812A 7900             38                             MOV R1, #00H
+812C 7806             39                             MOV R0, #06H
+812E 319F             40                             ACALL PRINT
+                      41                             
+8130 7901             42                             MOV R1, #01H
+8132 7805             43                             MOV R0, #05H
+8134 319F             44                             ACALL PRINT
+                      45                             
+8136 7901             46                             MOV R1, #01H
+8138 7806             47                             MOV R0, #06H
+813A 319F             48                             ACALL PRINT
+                      49                             
+813C 7901             50                             MOV R1, #01H
+813E 7807             51                             MOV R0, #07H
+8140 319F             52                             ACALL PRINT
+                      53                             
+8142 7901             54                             MOV R1, #01H
+8144 7808             55                             MOV R0, #08H
+8146 319F             56                             ACALL PRINT
+                      57                             
+8148 7901             58                             MOV R1, #01H
+A51 MACRO ASSEMBLER  TASK9                                                                03/10/2026 16:00:49 PAGE     2
+
+814A 7809             59                             MOV R0, #09H
+814C 319F             60                             ACALL PRINT
+                      61                             
+814E 7902             62                             MOV R1, #02H
+8150 7800             63                             MOV R0, #00H
+8152 319F             64                             ACALL PRINT
+                      65                             
+8154 7902             66                             MOV R1, #02H
+8156 7801             67                             MOV R0, #01H
+8158 319F             68                             ACALL PRINT
+                      69                             
+815A 7902             70                             MOV R1, #02H
+815C 7802             71                             MOV R0, #02H
+815E 319F             72                             ACALL PRINT
+                      73                             
+8160 7902             74                             MOV R1, #02H
+8162 7803             75                             MOV R0, #03H
+8164 319F             76                             ACALL PRINT
+                      77                             
+8166 7902             78                             MOV R1, #02H
+8168 7809             79                             MOV R0, #09H
+816A 319F             80                             ACALL PRINT
+                      81                             
+816C 7904             82                             MOV R1, #04H
+816E 7807             83                             MOV R0, #07H
+8170 319F             84                             ACALL PRINT
+                      85                             
+8172 7904             86                             MOV R1, #04H
+8174 7808             87                             MOV R0, #08H
+8176 319F             88                             ACALL PRINT
+                      89                             
+8178 7904             90                             MOV R1, #04H
+817A 7809             91                             MOV R0, #09H
+817C 319F             92                             ACALL PRINT
+                      93                             
+817E 7905             94                             MOV R1, #05H
+8180 7800             95                             MOV R0, #00H
+8182 319F             96                             ACALL PRINT
+                      97                             
+8184 7905             98                             MOV R1, #05H
+8186 7801             99                             MOV R0, #01H
+8188 319F            100                             ACALL PRINT
+                     101                             
+818A 7905            102                             MOV R1, #05H
+818C 7802            103                             MOV R0, #02H
+818E 319F            104                             ACALL PRINT
+                     105                             
+8190 7905            106                             MOV R1, #05H
+8192 7803            107                             MOV R0, #03H
+8194 319F            108                             ACALL PRINT
+                     109                             
+8196 7905            110                             MOV R1, #05H
+8198 7804            111                             MOV R0, #04H
+819A 319F            112                             ACALL PRINT
+                     113                                                     
+819C 028106          114                             LJMP WHILE
+                     115                     
+819F                 116                     PRINT:
+819F 7B04            117                             MOV R3, #4
+81A1 7CFF            118                             LOP3: MOV R4, #255
+81A3                 119                                     LOP1: 
+81A3 31AA            120                                             ACALL DISPLAY
+81A5 DCFC            121                                             DJNZ R4, LOP1
+81A7 DBF8            122                                     DJNZ R3, LOP3                   
+81A9 22              123                             RET
+                     124                     
+A51 MACRO ASSEMBLER  TASK9                                                                03/10/2026 16:00:49 PAGE     3
+
+81AA                 125                     DISPLAY:
+                     126                             
+81AA 90E801          127                             MOV DPTR, #0E801H
+81AD 7402            128                             MOV A, #02H
+81AF F0              129                             MOVX @DPTR, A
+81B0 758390          130                             MOV DPH, #90H
+81B3 E8              131                             MOV A, R0
+81B4 F582            132                             MOV DPL, A
+81B6 E0              133                             MOVX A, @DPTR
+81B7 90E800          134                             MOV DPTR, #0E800H
+81BA F0              135                             MOVX @DPTR, A
+                     136                             
+81BB 7EFF            137                             MOV R6, #0FFH
+81BD DEFE            138                             SWITCH1: DJNZ R6, SWITCH1
+                     139                             
+81BF 90E801          140                             MOV DPTR, #0E801H
+81C2 7401            141                             MOV A, #01H
+81C4 F0              142                             MOVX @DPTR, A
+81C5 758390          143                             MOV DPH, #90H
+81C8 E9              144                             MOV A, R1
+81C9 F582            145                             MOV DPL, A
+81CB E0              146                             MOVX A, @DPTR
+81CC 90E800          147                             MOV DPTR, #0E800H
+81CF F0              148                             MOVX @DPTR, A
+                     149                             
+81D0 7EFF            150                             MOV R6, #0FFH
+81D2 DEFE            151                             SWITCH2: DJNZ R6, SWITCH2
+                     152                             
+81D4 22              153                             RET
+                     154                     
+81D5                 155                     HERE: 
+81D5 80FE            156                             SJMP HERE
+                     157                     
+                     158                     END
+A51 MACRO ASSEMBLER  TASK9                                                                03/10/2026 16:00:49 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DISPLAY. . . . . .  C ADDR   81AAH   A   
+DPH. . . . . . . .  D ADDR   0083H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+HERE . . . . . . .  C ADDR   81D5H   A   
+LOP1 . . . . . . .  C ADDR   81A3H   A   
+LOP3 . . . . . . .  C ADDR   81A1H   A   
+PRINT. . . . . . .  C ADDR   819FH   A   
+SWITCH1. . . . . .  C ADDR   81BDH   A   
+SWITCH2. . . . . .  C ADDR   81D2H   A   
+WHILE. . . . . . .  C ADDR   8106H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
