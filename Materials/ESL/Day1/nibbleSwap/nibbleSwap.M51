@@ -1,0 +1,60 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/15/2026  15:37:26  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE nibbleSwap.obj TO nibbleSwap
+
+
+INPUT MODULES INCLUDED:
+  nibbleSwap.obj (NIBBLESWAP)
+
+
+LINK MAP OF MODULE:  nibbleSwap (NIBBLESWAP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     811AH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  nibbleSwap (NIBBLESWAP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        NIBBLESWAP
+  D:00F0H         SYMBOL        B
+  C:8118H         SYMBOL        HERE
+  C:8100H         LINE#         3
+  C:8103H         LINE#         4
+  C:8104H         LINE#         5
+  C:8106H         LINE#         7
+  C:8108H         LINE#         9
+  C:8109H         LINE#         10
+  C:810AH         LINE#         11
+  C:810BH         LINE#         12
+  C:810CH         LINE#         13
+  C:810DH         LINE#         16
+  C:810FH         LINE#         17
+  C:8111H         LINE#         22
+  C:8112H         LINE#         23
+  C:8113H         LINE#         24
+  C:8114H         LINE#         25
+  C:8115H         LINE#         27
+  C:8116H         LINE#         28
+  C:8117H         LINE#         29
+  C:8118H         LINE#         31
+  -------         ENDMOD        NIBBLESWAP
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 001AH BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33050
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

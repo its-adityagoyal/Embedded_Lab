@@ -1,0 +1,189 @@
+A51 MACRO ASSEMBLER  EXP2A                                                                01/14/2026 16:22:22 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN exp2a.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE exp2a.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+8100                   1     ORG 8100H
+                       2     
+                       3     ; -------------------------------------------------
+                       4     ; CONSTANT DEFINITIONS
+                       5     ; -------------------------------------------------
+  9000                 6     ARRAY_BASE EQU 09000H
+  9500                 7     KEY_ADDR   EQU 09500H
+  9550                 8     RESULT     EQU 09550H
+  000A                 9     SIZE       EQU 10
+  0009                10     SIZE_N1    EQU 09          ; SIZE - 1
+                      11     
+                      12     ; -------------------------------------------------
+                      13     ; SORTING (BUBBLE SORT)
+                      14     ; -------------------------------------------------
+                      15                
+8100 780A             16     START:      MOV     R0,#SIZE        ; Outer loop
+                      17     
+8102 7909             18     SORT1:      MOV     R1,#SIZE_N1     ; Inner loop
+8104 909000           19                 MOV     DPTR,#ARRAY_BASE
+                      20     
+8107 E0               21     SORT2:      MOVX    A,@DPTR         ; Read arr[j]
+8108 FD               22                 MOV     R5,A            ; Save arr[j] in R5
+8109 A3               23                 INC     DPTR
+810A E0               24                 MOVX    A,@DPTR         ; Read arr[j+1]
+810B F5F0             25                 MOV     B,A             ; B = arr[j+1]
+                      26                
+                      27                 ; Compare arr[j] (R5) and arr[j+1] (B)
+810D ED               28                 MOV     A,R5            ; Load arr[j] back to A
+810E C3               29                 CLR     C
+810F 95F0             30                 SUBB    A,B             ; A - B
+                      31                
+                      32                 ; If Carry=1 (A < B), correct order -> Jump
+8111 400A             33                 JC      NEXT
+                      34                 ; If Zero=1 (A == B), correct order -> Jump
+8113 6008             35                 JZ      NEXT
+                      36                
+                      37                 ; If C=0 and Z=0, then A > B -> SWAP
+                      38                 ; Current DPTR points to arr[j+1]
+8115 ED               39                 MOV     A,R5            ; A = arr[j]
+8116 F0               40                 MOVX    @DPTR,A         ; Store arr[j] in arr[j+1] position
+8117 1582             41                 DEC     DPL
+8119 E5F0             42                 MOV     A,B             ; A = arr[j+1]
+811B F0               43                 MOVX    @DPTR,A         ; Store arr[j+1] in arr[j] position
+811C A3               44                 INC     DPTR            ; Restore DPTR to j+1 for next iter
+                      45     
+811D D9E8             46     NEXT:       DJNZ    R1,SORT2
+811F D8E1             47                 DJNZ    R0,SORT1
+                      48     
+                      49     ; -------------------------------------------------
+                      50     ; BINARY SEARCH
+                      51     ; -------------------------------------------------
+                      52     
+8121 7A00             53                 MOV     R2,#00H         ; LOW = 0
+8123 7B09             54                 MOV     R3,#SIZE_N1     ; HIGH = 9
+                      55     
+8125                  56     SEARCH_LOOP:
+                      57                 ; Compare LOW (R2) and HIGH (R3)
+8125 EA               58                 MOV     A,R2
+A51 MACRO ASSEMBLER  EXP2A                                                                01/14/2026 16:22:22 PAGE     2
+
+8126 C3               59                 CLR     C
+8127 9B               60                 SUBB    A,R3
+8128 6031             61                 JZ      CHECK_LAST      ; If Zero, LOW == HIGH (Check single element)
+812A 5052             62                 JNC     NOT_FOUND       ; If No Carry, LOW > HIGH (Not found)
+                      63                 ; If Carry, LOW < HIGH -> Continue
+                      64     
+                      65                 ; CALC MID = (LOW + HIGH) / 2
+812C EA               66                 MOV     A,R2
+812D 2B               67                 ADD     A,R3
+812E C3               68                 CLR     C
+812F 13               69                 RRC     A
+8130 FC               70                 MOV     R4,A            ; MID in R4
+                      71     
+                      72                 ; READ arr[MID]
+8131 909000           73                 MOV     DPTR,#ARRAY_BASE
+8134 EC               74                 MOV     A,R4
+8135 2582             75                 ADD     A,DPL
+8137 F582             76                 MOV     DPL,A
+8139 7400             77                 MOV     A,#00H
+813B 3583             78                 ADDC    A,DPH
+813D F583             79                 MOV     DPH,A
+                      80                
+813F E0               81                 MOVX    A,@DPTR         ; A = arr[MID]
+8140 FD               82                 MOV     R5,A            ; Save arr[MID] in R5
+                      83     
+                      84                 ; READ KEY
+8141 909500           85                 MOV     DPTR,#KEY_ADDR
+8144 E0               86                 MOVX    A,@DPTR
+8145 F5F0             87                 MOV     B,A             ; B = KEY
+                      88                
+                      89                 ; COMPARE arr[MID] (R5) with KEY (B)
+8147 ED               90                 MOV     A,R5
+8148 C3               91                 CLR     C
+8149 95F0             92                 SUBB    A,B
+814B 602A             93                 JZ      FOUND           ; If Zero, A == KEY
+814D 4007             94                 JC      MOVE_RIGHT      ; If Carry, A < KEY -> Look Right
+                      95                
+                      96                 ; Else A > KEY -> Look Left (HIGH = MID - 1)
+814F EC               97                 MOV     A,R4
+8150 602C             98                 JZ      NOT_FOUND       ; Safety: If MID=0, cannot decrement
+8152 14               99                 DEC     A
+8153 FB              100                 MOV     R3,A            ; HIGH = MID - 1
+8154 80CF            101                 SJMP    SEARCH_LOOP
+                     102     
+8156                 103     MOVE_RIGHT: ; LOW = MID + 1
+8156 EC              104                 MOV     A,R4
+8157 04              105                 INC     A
+8158 FA              106                 MOV     R2,A           
+8159 80CA            107                 SJMP    SEARCH_LOOP
+                     108     
+815B                 109     CHECK_LAST:
+                     110                 ; Check the final element at index R2
+815B 909000          111                 MOV     DPTR,#ARRAY_BASE
+815E EA              112                 MOV     A,R2
+815F 2582            113                 ADD     A,DPL
+8161 F582            114                 MOV     DPL,A
+8163 7400            115                 MOV     A,#00H
+8165 3583            116                 ADDC    A,DPH
+8167 F583            117                 MOV     DPH,A
+                     118                
+8169 E0              119                 MOVX    A,@DPTR         ; Read array element
+816A FD              120                 MOV     R5,A           
+                     121                
+816B 909500          122                 MOV     DPTR,#KEY_ADDR
+816E E0              123                 MOVX    A,@DPTR         ; Read Key
+                     124                
+A51 MACRO ASSEMBLER  EXP2A                                                                01/14/2026 16:22:22 PAGE     3
+
+816F C3              125                 CLR     C
+8170 9D              126                 SUBB    A,R5            ; Key - Element
+8171 700B            127                 JNZ     NOT_FOUND
+                     128                
+                     129                 ; If Found at last step, Result = R2
+8173 EA              130                 MOV     A,R2
+8174 FC              131                 MOV     R4,A
+8175 8000            132                 SJMP    FOUND
+                     133     
+8177 909550          134     FOUND:      MOV     DPTR,#RESULT
+817A EC              135                 MOV     A,R4            ; Index
+817B F0              136                 MOVX    @DPTR,A
+817C 8006            137                 SJMP    DONE
+                     138     
+817E 909550          139     NOT_FOUND:  MOV     DPTR,#RESULT
+8181 74FF            140                 MOV     A,#0FFH
+8183 F0              141                 MOVX    @DPTR,A
+                     142     
+8184 80FE            143     DONE:       SJMP    $
+                     144                 END
+A51 MACRO ASSEMBLER  EXP2A                                                                01/14/2026 16:22:22 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ARRAY_BASE . . . .  N NUMB   9000H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+CHECK_LAST . . . .  C ADDR   815BH   A   
+DONE . . . . . . .  C ADDR   8184H   A   
+DPH. . . . . . . .  D ADDR   0083H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+FOUND. . . . . . .  C ADDR   8177H   A   
+KEY_ADDR . . . . .  N NUMB   9500H   A   
+MOVE_RIGHT . . . .  C ADDR   8156H   A   
+NEXT . . . . . . .  C ADDR   811DH   A   
+NOT_FOUND. . . . .  C ADDR   817EH   A   
+RESULT . . . . . .  N NUMB   9550H   A   
+SEARCH_LOOP. . . .  C ADDR   8125H   A   
+SIZE . . . . . . .  N NUMB   000AH   A   
+SIZE_N1. . . . . .  N NUMB   0009H   A   
+SORT1. . . . . . .  C ADDR   8102H   A   
+SORT2. . . . . . .  C ADDR   8107H   A   
+START. . . . . . .  C ADDR   8100H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

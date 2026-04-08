@@ -1,0 +1,55 @@
+A51 MACRO ASSEMBLER  EXP1A                                                                12/23/2025 12:59:37 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN exp1a.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE exp1a.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+8100                   1     ORG 8100H
+                       2     
+                       3         ; --- Setup (Manually putting values) ---
+8100 909000            4         MOV DPTR, #9000H
+8103 7405              5         MOV A, #05H
+8105 F0                6         MOVX @DPTR, A       ; A[0] = 05
+8106 A3                7         INC DPTR
+8107 7409              8         MOV A, #09H
+8109 F0                9         MOVX @DPTR, A       ; A[1] = 09
+                      10     
+                      11         ; --- THE SWAP LOGIC START ---
+810A 909000           12         MOV DPTR, #9000H    ; Point to first number
+810D E0               13         MOVX A, @DPTR       ; Read 1st number (05)
+810E F5F0             14         MOV B, A            ; Save it in B (TEMP)
+                      15     
+8110 A3               16         INC DPTR            ; Move to second number
+8111 E0               17         MOVX A, @DPTR       ; Read 2nd number (09)
+                      18         
+                      19         ; We are at 9001H. A holds 09, B holds 05.
+8112 1582             20         DEC DPL           ; Go back to 9000H
+8114 F0               21         MOVX @DPTR, A       ; Write 09 to first location
+                      22         
+8115 A3               23         INC DPTR            ; Go back to 9001H
+8116 E5F0             24         MOV A, B            ; Get the old 05 back
+8118 F0               25         MOVX @DPTR, A       ; Write 05 to second location
+                      26         ; --- THE SWAP LOGIC END ---
+                      27     
+8119 80FE             28         HERE: SJMP HERE
+                      29         END
+A51 MACRO ASSEMBLER  EXP1A                                                                12/23/2025 12:59:37 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+HERE . . . . . . .  C ADDR   8119H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

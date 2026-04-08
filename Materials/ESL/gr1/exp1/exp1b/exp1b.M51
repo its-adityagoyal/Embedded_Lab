@@ -1,0 +1,56 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/23/2025  16:40:11  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE exp1b.obj TO exp1b
+
+
+INPUT MODULES INCLUDED:
+  exp1b.obj (EXP1B)
+
+
+LINK MAP OF MODULE:  exp1b (EXP1B)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     8119H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  exp1b (EXP1B)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        EXP1B
+  C:8117H         SYMBOL        HERE
+  C:8111H         SYMBOL        IS_SMALLER
+  C:8117H         SYMBOL        STOP
+  C:8100H         LINE#         3
+  C:8102H         LINE#         4
+  C:8104H         LINE#         7
+  C:8105H         LINE#         8
+  C:8106H         LINE#         9
+  C:8107H         LINE#         12
+  C:8109H         LINE#         15
+  C:810CH         LINE#         16
+  C:810EH         LINE#         17
+  C:810FH         LINE#         18
+  C:8111H         LINE#         21
+  C:8114H         LINE#         22
+  C:8116H         LINE#         23
+  C:8117H         LINE#         26
+  -------         ENDMOD        EXP1B
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0019H BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33049
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

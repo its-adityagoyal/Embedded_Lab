@@ -1,0 +1,399 @@
+A51 MACRO ASSEMBLER  CLOCK                                                                03/10/2026 10:16:06 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN clock.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE clock.a51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;-----------------------------------------------------------
+                       2     ; EXPERIMENT 3: PART C - Real-Time Clock & Stopwatch
+                       3     ; Custom Wiring: P1A0=dp, P1A1=a ... P1A7=g
+                       4     ; Active Low Mode Switch. Starts at 10:59:45.
+                       5     ;-----------------------------------------------------------
+                       6     
+8000                   7         ORG 8000H           
+8000 028100            8         LJMP MAIN           
+                       9     
+8100                  10         ORG 8100H           ; MAIN PROGRAM START
+                      11         
+                      12         ; --- ESA KIT 8255 ADDRESSES ---
+  E800                13         PORTA     EQU 0E800H        
+  E801                14         PORTB     EQU 0E801H        
+  E802                15         PORTC     EQU 0E802H        
+  E803                16         CTRL_PORT EQU 0E803H        
+                      17     
+8100                  18     MAIN:
+                      19         ; ==========================================
+                      20         ; 1. SYSTEM INITIALIZATION
+                      21         ; ==========================================
+8100 90E803           22         MOV DPTR, #CTRL_PORT
+8103 7489             23         MOV A, #89H                 ; PA=Out, PB=Out, PC=In
+8105 F0               24         MOVX @DPTR, A
+                      25     
+8106 C200             26         CLR 00H             ; Mode Flag: 0=Clock, 1=Stopwatch
+8108 C201             27         CLR 01H             ; SW Run Flag: 0=Stopped, 1=Running
+810A D203             28         SETB 03H            ; Debounce for Start (PC1)
+810C D204             29         SETB 04H            ; Debounce for Stop (PC2)
+                      30         
+810E 753014           31         MOV 30H, #20        ; 20 ticks = 1 sec
+                      32     
+                      33         ; --- SET INITIAL CLOCK TIME (10:59:45) ---
+8111 909000           34         MOV DPTR, #9000H
+8114 7410             35         MOV A, #10H                 ; Hours
+8116 F0               36         MOVX @DPTR, A
+8117 A3               37         INC DPTR
+8118 7459             38         MOV A, #59H                 ; Minutes
+811A F0               39         MOVX @DPTR, A
+811B A3               40         INC DPTR
+811C 7445             41         MOV A, #45H                 ; Seconds
+811E F0               42         MOVX @DPTR, A
+                      43     
+                      44         ; --- CLEAR STOPWATCH MEMORY ---
+811F E4               45         CLR A
+8120 909003           46         MOV DPTR, #9003H
+8123 F0               47         MOVX @DPTR, A
+8124 A3               48         INC DPTR
+8125 F0               49         MOVX @DPTR, A
+8126 A3               50         INC DPTR
+8127 F0               51         MOVX @DPTR, A
+                      52     
+                      53         ; Start Timer 0 (50ms Overflows)
+8128 758901           54         MOV TMOD, #01H      
+812B 758C4C           55         MOV TH0, #4CH       
+812E 758A00           56         MOV TL0, #00H
+                      57         
+8131 75A882           58         MOV IE, #82H        ; Enable Interrupts
+A51 MACRO ASSEMBLER  CLOCK                                                                03/10/2026 10:16:06 PAGE     2
+
+8134 D28C             59         SETB TR0            ; Start Timer
+                      60     
+                      61         ; ==========================================
+                      62         ; 2. MAIN LOOP
+                      63         ; ==========================================
+8136                  64     MAIN_LOOP:
+8136 90E802           65         MOV DPTR, #PORTC
+8139 E0               66         MOVX A, @DPTR
+813A FA               67         MOV R2, A           ; R2 holds Port C state
+                      68     
+                      69         ; --- 1. LEVEL-TRIGGERED MODE SWITCH (PC0) ---
+                      70         ; PC0 High = Clock, PC0 Low = Stopwatch
+813B 20E004           71         JB ACC.0, MODE_IS_HIGH
+813E D200             72         SETB 00H            ; MODE_FLAG = 1 (Stopwatch Mode)
+8140 8002             73         SJMP CHECK_START
+8142                  74     MODE_IS_HIGH:
+8142 C200             75         CLR 00H             ; MODE_FLAG = 0 (Clock Mode)
+                      76     
+                      77         ; --- 2. ACTIVE-LOW START SWITCH (PC1) ---
+8144                  78     CHECK_START:
+8144 EA               79         MOV A, R2
+8145 20E115           80         JB ACC.1, START_IS_HIGH     
+                      81         
+8148 300314           82         JNB 03H, CHECK_STOP         
+814B C203             83         CLR 03H                     
+814D 30000F           84         JNB 00H, CHECK_STOP         
+                      85         
+8150 E4               86         CLR A
+8151 909003           87         MOV DPTR, #9003H
+8154 F0               88         MOVX @DPTR, A
+8155 A3               89         INC DPTR
+8156 F0               90         MOVX @DPTR, A
+8157 A3               91         INC DPTR
+8158 F0               92         MOVX @DPTR, A
+8159 D201             93         SETB 01H                    
+815B 8002             94         SJMP CHECK_STOP
+                      95         
+815D                  96     START_IS_HIGH:
+815D D203             97         SETB 03H                    
+                      98     
+                      99         ; --- 3. ACTIVE-LOW STOP SWITCH (PC2) ---
+815F                 100     CHECK_STOP:
+815F EA              101         MOV A, R2
+8160 20E20C          102         JB ACC.2, STOP_IS_HIGH      
+                     103         
+8163 30040B          104         JNB 04H, UPDATE_DISP        
+8166 C204            105         CLR 04H                     
+8168 300006          106         JNB 00H, UPDATE_DISP        
+816B C201            107         CLR 01H                     
+816D 8002            108         SJMP UPDATE_DISP
+                     109         
+816F                 110     STOP_IS_HIGH:
+816F D204            111         SETB 04H                    
+                     112     
+                     113         ; --- 4. MULTIPLEXING DISPLAY ROUTINE ---
+8171                 114     UPDATE_DISP:
+8171 200006          115         JB 00H, SHOW_SW
+8174 7890            116         MOV R0, #90H        ; Display Clock Data
+8176 7900            117         MOV R1, #00H
+8178 8004            118         SJMP RENDER_DIGITS
+817A                 119     SHOW_SW:
+817A 7890            120         MOV R0, #90H        ; Display Stopwatch Data
+817C 7903            121         MOV R1, #03H
+                     122     
+817E                 123     RENDER_DIGITS:
+                     124         ; Seconds
+A51 MACRO ASSEMBLER  CLOCK                                                                03/10/2026 10:16:06 PAGE     3
+
+817E 8883            125         MOV DPH, R0
+8180 8982            126         MOV DPL, R1
+8182 A3              127         INC DPTR
+8183 A3              128         INC DPTR
+8184 E0              129         MOVX A, @DPTR
+8185 FB              130         MOV R3, A           
+                     131         
+8186 540F            132         ANL A, #0FH
+8188 516C            133         ACALL SEND_TO_PA
+818A 90E801          134         MOV DPTR, #PORTB
+818D 74FE            135         MOV A, #0FEH        
+818F F0              136         MOVX @DPTR, A
+8190 5184            137         ACALL DELAY_2MS
+                     138     
+8192 517D            139         ACALL BLANK_DISP
+8194 EB              140         MOV A, R3
+8195 C4              141         SWAP A
+8196 540F            142         ANL A, #0FH
+8198 516C            143         ACALL SEND_TO_PA
+819A 90E801          144         MOV DPTR, #PORTB
+819D 74FD            145         MOV A, #0FDH        
+819F F0              146         MOVX @DPTR, A
+81A0 5184            147         ACALL DELAY_2MS
+                     148     
+                     149         ; Minutes
+81A2 8883            150         MOV DPH, R0
+81A4 8982            151         MOV DPL, R1
+81A6 A3              152         INC DPTR
+81A7 E0              153         MOVX A, @DPTR
+81A8 FB              154         MOV R3, A           
+                     155         
+81A9 517D            156         ACALL BLANK_DISP
+81AB EB              157         MOV A, R3
+81AC 540F            158         ANL A, #0FH
+81AE 516C            159         ACALL SEND_TO_PA
+81B0 90E801          160         MOV DPTR, #PORTB
+81B3 74FB            161         MOV A, #0FBH        
+81B5 F0              162         MOVX @DPTR, A
+81B6 5184            163         ACALL DELAY_2MS
+                     164     
+81B8 517D            165         ACALL BLANK_DISP
+81BA EB              166         MOV A, R3
+81BB C4              167         SWAP A
+81BC 540F            168         ANL A, #0FH
+81BE 516C            169         ACALL SEND_TO_PA
+81C0 90E801          170         MOV DPTR, #PORTB
+81C3 74F7            171         MOV A, #0F7H        
+81C5 F0              172         MOVX @DPTR, A
+81C6 5184            173         ACALL DELAY_2MS
+                     174     
+                     175         ; Hours
+81C8 8883            176         MOV DPH, R0
+81CA 8982            177         MOV DPL, R1
+81CC E0              178         MOVX A, @DPTR
+81CD FB              179         MOV R3, A           
+                     180         
+81CE 517D            181         ACALL BLANK_DISP
+81D0 EB              182         MOV A, R3
+81D1 540F            183         ANL A, #0FH
+81D3 516C            184         ACALL SEND_TO_PA
+81D5 90E801          185         MOV DPTR, #PORTB
+81D8 74EF            186         MOV A, #0EFH        
+81DA F0              187         MOVX @DPTR, A
+81DB 5184            188         ACALL DELAY_2MS
+                     189     
+81DD 517D            190         ACALL BLANK_DISP
+A51 MACRO ASSEMBLER  CLOCK                                                                03/10/2026 10:16:06 PAGE     4
+
+81DF EB              191         MOV A, R3
+81E0 C4              192         SWAP A
+81E1 540F            193         ANL A, #0FH
+81E3 516C            194         ACALL SEND_TO_PA
+81E5 90E801          195         MOV DPTR, #PORTB
+81E8 74DF            196         MOV A, #0DFH        
+81EA F0              197         MOVX @DPTR, A
+81EB 5184            198         ACALL DELAY_2MS
+                     199     
+81ED 517D            200         ACALL BLANK_DISP    
+81EF 028136          201         LJMP MAIN_LOOP      
+                     202     
+                     203     ; =========================================================
+                     204     ; 3. TIMER 0 INTERRUPT SERVICE ROUTINE (Background Clock)
+                     205     ; =========================================================
+81F2                 206     TIMER0_ISR:
+81F2 C28C            207         CLR TR0
+81F4 758C4C          208         MOV TH0, #4CH
+81F7 758A00          209         MOV TL0, #00H
+81FA D28C            210         SETB TR0
+                     211     
+81FC C0E0            212         PUSH ACC
+81FE C0D0            213         PUSH PSW
+8200 C082            214         PUSH DPL
+8202 C083            215         PUSH DPH
+                     216     
+8204 D5305C          217         DJNZ 30H, EXIT_ISR  
+8207 753014          218         MOV 30H, #20        
+                     219     
+                     220         ; --- CLOCK MATH ---
+820A 909002          221         MOV DPTR, #9002H    
+820D E0              222         MOVX A, @DPTR
+820E 2401            223         ADD A, #01H         
+8210 D4              224         DA A                
+8211 B46002          225         CJNE A, #60H, SAVE_C_SEC
+8214 7400            226         MOV A, #00H         
+8216                 227     SAVE_C_SEC:
+8216 F0              228         MOVX @DPTR, A
+8217 701C            229         JNZ CHECK_SW_MATH   
+                     230     
+8219 909001          231         MOV DPTR, #9001H    
+821C E0              232         MOVX A, @DPTR
+821D 2401            233         ADD A, #01H
+821F D4              234         DA A
+8220 B46002          235         CJNE A, #60H, SAVE_C_MIN
+8223 7400            236         MOV A, #00H
+8225                 237     SAVE_C_MIN:
+8225 F0              238         MOVX @DPTR, A
+8226 700D            239         JNZ CHECK_SW_MATH   
+                     240     
+8228 909000          241         MOV DPTR, #9000H    
+822B E0              242         MOVX A, @DPTR
+822C 2401            243         ADD A, #01H
+822E D4              244         DA A
+822F B42402          245         CJNE A, #24H, SAVE_C_HR
+8232 7400            246         MOV A, #00H
+8234                 247     SAVE_C_HR:
+8234 F0              248         MOVX @DPTR, A
+                     249     
+                     250         ; --- STOPWATCH MATH ---
+8235                 251     CHECK_SW_MATH:
+8235 30012B          252         JNB 01H, EXIT_ISR   
+                     253     
+8238 909005          254         MOV DPTR, #9005H    
+823B E0              255         MOVX A, @DPTR
+823C 2401            256         ADD A, #01H
+A51 MACRO ASSEMBLER  CLOCK                                                                03/10/2026 10:16:06 PAGE     5
+
+823E D4              257         DA A
+823F B46002          258         CJNE A, #60H, SAVE_S_SEC
+8242 7400            259         MOV A, #00H
+8244                 260     SAVE_S_SEC:
+8244 F0              261         MOVX @DPTR, A
+8245 701C            262         JNZ EXIT_ISR
+                     263     
+8247 909004          264         MOV DPTR, #9004H    
+824A E0              265         MOVX A, @DPTR
+824B 2401            266         ADD A, #01H
+824D D4              267         DA A
+824E B46002          268         CJNE A, #60H, SAVE_S_MIN
+8251 7400            269         MOV A, #00H
+8253                 270     SAVE_S_MIN:
+8253 F0              271         MOVX @DPTR, A
+8254 700D            272         JNZ EXIT_ISR
+                     273     
+8256 909003          274         MOV DPTR, #9003H    
+8259 E0              275         MOVX A, @DPTR
+825A 2401            276         ADD A, #01H
+825C D4              277         DA A
+825D B42402          278         CJNE A, #24H, SAVE_S_HR
+8260 7400            279         MOV A, #00H
+8262                 280     SAVE_S_HR:
+8262 F0              281         MOVX @DPTR, A
+                     282     
+8263                 283     EXIT_ISR:
+8263 D083            284         POP DPH
+8265 D082            285         POP DPL
+8267 D0D0            286         POP PSW
+8269 D0E0            287         POP ACC
+826B 32              288         RETI
+                     289     
+                     290     ; =========================================================
+                     291     ; SUBROUTINES & CUSTOM DATA
+                     292     ; =========================================================
+826C                 293     SEND_TO_PA:
+826C C083            294         PUSH DPH
+826E C082            295         PUSH DPL
+8270 90828D          296         MOV DPTR, #HEX_TABLE
+8273 93              297         MOVC A, @A+DPTR
+8274 90E800          298         MOV DPTR, #PORTA
+8277 F0              299         MOVX @DPTR, A
+8278 D082            300         POP DPL
+827A D083            301         POP DPH
+827C 22              302         RET
+                     303     
+827D                 304     BLANK_DISP:
+827D 90E801          305         MOV DPTR, #PORTB
+8280 74FF            306         MOV A, #0FFH
+8282 F0              307         MOVX @DPTR, A
+8283 22              308         RET
+                     309     
+8284                 310     DELAY_2MS:
+8284 7E04            311         MOV R6, #4
+8286 7FFA            312     D1: MOV R7, #250
+8288 DFFE            313     D2: DJNZ R7, D2
+828A DEFA            314         DJNZ R6, D1
+828C 22              315         RET
+                     316     
+828D                 317     HEX_TABLE: 
+828D 7E0CB69E        318         DB 7EH, 0CH, 0B6H, 9EH, 0CCH, 0DAH, 0FAH, 0EH, 0FEH, 0DEH
+8291 CCDAFA0E                
+8295 FEDE                    
+                     319     
+                     320     ; =========================================================
+A51 MACRO ASSEMBLER  CLOCK                                                                03/10/2026 10:16:06 PAGE     6
+
+                     321     ; INTERRUPT VECTOR MAPPING (CRITICAL: MUST BE AT END)
+                     322     ; =========================================================
+FFF0                 323         ORG 0FFF0H          ; Trainer Address from Kit Manual
+FFF0 0281F2          324         LJMP TIMER0_ISR
+                     325     
+                     326         END
+A51 MACRO ASSEMBLER  CLOCK                                                                03/10/2026 10:16:06 PAGE     7
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+BLANK_DISP . . . .  C ADDR   827DH   A   
+CHECK_START. . . .  C ADDR   8144H   A   
+CHECK_STOP . . . .  C ADDR   815FH   A   
+CHECK_SW_MATH. . .  C ADDR   8235H   A   
+CTRL_PORT. . . . .  N NUMB   E803H   A   
+D1 . . . . . . . .  C ADDR   8286H   A   
+D2 . . . . . . . .  C ADDR   8288H   A   
+DELAY_2MS. . . . .  C ADDR   8284H   A   
+DPH. . . . . . . .  D ADDR   0083H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+EXIT_ISR . . . . .  C ADDR   8263H   A   
+HEX_TABLE. . . . .  C ADDR   828DH   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+MAIN . . . . . . .  C ADDR   8100H   A   
+MAIN_LOOP. . . . .  C ADDR   8136H   A   
+MODE_IS_HIGH . . .  C ADDR   8142H   A   
+PORTA. . . . . . .  N NUMB   E800H   A   
+PORTB. . . . . . .  N NUMB   E801H   A   
+PORTC. . . . . . .  N NUMB   E802H   A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+RENDER_DIGITS. . .  C ADDR   817EH   A   
+SAVE_C_HR. . . . .  C ADDR   8234H   A   
+SAVE_C_MIN . . . .  C ADDR   8225H   A   
+SAVE_C_SEC . . . .  C ADDR   8216H   A   
+SAVE_S_HR. . . . .  C ADDR   8262H   A   
+SAVE_S_MIN . . . .  C ADDR   8253H   A   
+SAVE_S_SEC . . . .  C ADDR   8244H   A   
+SEND_TO_PA . . . .  C ADDR   826CH   A   
+SHOW_SW. . . . . .  C ADDR   817AH   A   
+START_IS_HIGH. . .  C ADDR   815DH   A   
+STOP_IS_HIGH . . .  C ADDR   816FH   A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TIMER0_ISR . . . .  C ADDR   81F2H   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+UPDATE_DISP. . . .  C ADDR   8171H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

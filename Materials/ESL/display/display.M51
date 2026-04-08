@@ -1,0 +1,106 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/26/2026  19:03:04  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE display.obj TO display
+
+
+INPUT MODULES INCLUDED:
+  display.obj (DISPLAY)
+
+
+LINK MAP OF MODULE:  display (DISPLAY)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     8180H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  display (DISPLAY)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        DISPLAY
+  N:E803H         SYMBOL        CTRL_PORT
+  C:8153H         SYMBOL        DELAY_5MS
+  C:8110H         SYMBOL        DISPLAY_NUM
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  C:815CH         SYMBOL        HEX_TABLE
+  C:8100H         SYMBOL        INIT_8255
+  C:8155H         SYMBOL        M1
+  C:8157H         SYMBOL        M2
+  C:8113H         SYMBOL        MUX_LOOP
+  N:E800H         SYMBOL        PORTA
+  N:E801H         SYMBOL        PORTB
+  C:8109H         SYMBOL        READ_NEXT
+  C:8166H         SYMBOL        SEQ_DATA
+  C:8106H         SYMBOL        START_SEQUENCE
+  C:8100H         LINE#         14
+  C:8103H         LINE#         15
+  C:8105H         LINE#         16
+  C:8106H         LINE#         19
+  C:8109H         LINE#         22
+  C:810AH         LINE#         23
+  C:810BH         LINE#         24
+  C:810EH         LINE#         25
+  C:8110H         LINE#         28
+  C:8111H         LINE#         29
+  C:8113H         LINE#         33
+  C:8115H         LINE#         34
+  C:8117H         LINE#         39
+  C:811AH         LINE#         40
+  C:811CH         LINE#         41
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/26/2026  19:03:04  PAGE 2
+
+
+  C:811DH         LINE#         43
+  C:811EH         LINE#         44
+  C:811FH         LINE#         45
+  C:8121H         LINE#         46
+  C:8124H         LINE#         47
+  C:8125H         LINE#         49
+  C:8128H         LINE#         50
+  C:8129H         LINE#         52
+  C:812CH         LINE#         53
+  C:812EH         LINE#         54
+  C:812FH         LINE#         55
+  C:8131H         LINE#         60
+  C:8134H         LINE#         61
+  C:8136H         LINE#         62
+  C:8137H         LINE#         64
+  C:8138H         LINE#         65
+  C:813AH         LINE#         66
+  C:813DH         LINE#         67
+  C:813EH         LINE#         69
+  C:8141H         LINE#         70
+  C:8142H         LINE#         72
+  C:8145H         LINE#         73
+  C:8147H         LINE#         74
+  C:8148H         LINE#         75
+  C:814AH         LINE#         78
+  C:814CH         LINE#         79
+  C:814EH         LINE#         81
+  C:8150H         LINE#         83
+  C:8151H         LINE#         84
+  C:8153H         LINE#         90
+  C:8155H         LINE#         91
+  C:8157H         LINE#         92
+  C:8159H         LINE#         93
+  C:815BH         LINE#         94
+  -------         ENDMOD        DISPLAY
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0080H BYTE ( 6%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33152
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,152 @@
+A51 MACRO ASSEMBLER  DISPLAY                                                              02/26/2026 19:03:04 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN display.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE display.a51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;-----------------------------------------------------------
+                       2     ; EXPERIMENT 3: PART B - Custom Sequence Multiplexing
+                       3     ; Sequence: 00-06, 15-23, 29, 47-54 (0.5s display time)
+                       4     ;-----------------------------------------------------------
+                       5     
+8100                   6         ORG 8100H
+                       7     
+                       8         ; --- ESA KIT 8255 ADDRESSES ---
+  E800                 9         PORTA     EQU 0E800H        
+  E801                10         PORTB     EQU 0E801H        
+  E803                11         CTRL_PORT EQU 0E803H        
+                      12     
+8100                  13     INIT_8255:
+8100 90E803           14         MOV DPTR, #CTRL_PORT
+8103 7480             15         MOV A, #80H                 
+8105 F0               16         MOVX @DPTR, A
+                      17     
+8106                  18     START_SEQUENCE:
+8106 908166           19         MOV DPTR, #SEQ_DATA         
+                      20     
+8109                  21     READ_NEXT:
+8109 E4               22         CLR A
+810A 93               23         MOVC A, @A+DPTR             
+810B B4FF02           24         CJNE A, #0FFH, DISPLAY_NUM  
+810E 80F6             25         SJMP START_SEQUENCE         
+                      26     
+8110                  27     DISPLAY_NUM:
+8110 FA               28         MOV R2, A                   
+8111 7C32             29         MOV R4, #50                 
+                      30         
+8113                  31     MUX_LOOP:
+                      32         ; ---> THE FIX: SAVE DPTR IMMEDIATELY <---
+8113 C082             33         PUSH DPL                    
+8115 C083             34         PUSH DPH
+                      35     
+                      36         ; ==========================================
+                      37         ; TENS DIGIT (DISPLAY 1 - P1B0)
+                      38         ; ==========================================
+8117 90E801           39         MOV DPTR, #PORTB
+811A 7403             40         MOV A, #03H                 ; Blanking
+811C F0               41         MOVX @DPTR, A
+                      42     
+811D EA               43         MOV A, R2
+811E C4               44         SWAP A                      
+811F 540F             45         ANL A, #0FH                 
+8121 90815C           46         MOV DPTR, #HEX_TABLE        
+8124 93               47         MOVC A, @A+DPTR             
+                      48         
+8125 90E800           49         MOV DPTR, #PORTA
+8128 F0               50         MOVX @DPTR, A               
+                      51         
+8129 90E801           52         MOV DPTR, #PORTB
+812C 7402             53         MOV A, #02H                 ; Turn ON Display 1
+812E F0               54         MOVX @DPTR, A
+812F 3153             55         ACALL DELAY_5MS             
+                      56     
+                      57         ; ==========================================
+                      58         ; ONES DIGIT (DISPLAY 2 - P1B1)
+A51 MACRO ASSEMBLER  DISPLAY                                                              02/26/2026 19:03:04 PAGE     2
+
+                      59         ; ==========================================
+8131 90E801           60         MOV DPTR, #PORTB
+8134 7403             61         MOV A, #03H                 ; Blanking
+8136 F0               62         MOVX @DPTR, A
+                      63     
+8137 EA               64         MOV A, R2
+8138 540F             65         ANL A, #0FH                 
+813A 90815C           66         MOV DPTR, #HEX_TABLE        
+813D 93               67         MOVC A, @A+DPTR             
+                      68         
+813E 90E800           69         MOV DPTR, #PORTA
+8141 F0               70         MOVX @DPTR, A               
+                      71         
+8142 90E801           72         MOV DPTR, #PORTB
+8145 7401             73         MOV A, #01H                 ; Turn ON Display 2
+8147 F0               74         MOVX @DPTR, A
+8148 3153             75         ACALL DELAY_5MS             
+                      76     
+                      77         ; ---> THE FIX: RESTORE DPTR AT THE VERY END <---
+814A D083             78         POP DPH                     
+814C D082             79         POP DPL
+                      80         
+814E DCC3             81         DJNZ R4, MUX_LOOP           
+                      82     
+8150 A3               83         INC DPTR                    
+8151 80B6             84         SJMP READ_NEXT              
+                      85     
+                      86     ;-----------------------------------------------------------
+                      87     ; Subroutines & Data
+                      88     ;-----------------------------------------------------------
+8153                  89     DELAY_5MS:
+8153 7E0A             90         MOV R6, #10
+8155 7FFA             91     M1: MOV R7, #250
+8157 DFFE             92     M2: DJNZ R7, M2
+8159 DEFA             93         DJNZ R6, M1
+815B 22               94         RET
+                      95     
+815C                  96     HEX_TABLE: 
+815C 3F065B4F         97         DB 3FH, 06H, 5BH, 4FH, 66H, 6DH, 7DH, 07H, 7FH, 6FH
+8160 666D7D07                
+8164 7F6F                    
+                      98     
+8166                  99     SEQ_DATA:
+8166 00010203        100         DB 00H, 01H, 02H, 03H, 04H, 05H, 06H
+816A 040506                  
+816D 15161718        101         DB 15H, 16H, 17H, 18H, 19H, 20H, 21H, 22H, 23H
+8171 19202122                
+8175 23                      
+8176 29              102         DB 29H
+8177 47484950        103         DB 47H, 48H, 49H, 50H, 51H, 52H, 53H, 54H
+817B 51525354                
+817F FF              104         DB 0FFH
+                     105     
+                     106         END
+A51 MACRO ASSEMBLER  DISPLAY                                                              02/26/2026 19:03:04 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CTRL_PORT. . . . .  N NUMB   E803H   A   
+DELAY_5MS. . . . .  C ADDR   8153H   A   
+DISPLAY_NUM. . . .  C ADDR   8110H   A   
+DPH. . . . . . . .  D ADDR   0083H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+HEX_TABLE. . . . .  C ADDR   815CH   A   
+INIT_8255. . . . .  C ADDR   8100H   A   
+M1 . . . . . . . .  C ADDR   8155H   A   
+M2 . . . . . . . .  C ADDR   8157H   A   
+MUX_LOOP . . . . .  C ADDR   8113H   A   
+PORTA. . . . . . .  N NUMB   E800H   A   
+PORTB. . . . . . .  N NUMB   E801H   A   
+READ_NEXT. . . . .  C ADDR   8109H   A   
+SEQ_DATA . . . . .  C ADDR   8166H   A   
+START_SEQUENCE . .  C ADDR   8106H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

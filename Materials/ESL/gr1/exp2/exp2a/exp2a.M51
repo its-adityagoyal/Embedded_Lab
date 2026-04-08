@@ -1,0 +1,147 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/14/2026  16:22:22  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE exp2a.obj TO exp2a
+
+
+INPUT MODULES INCLUDED:
+  exp2a.obj (EXP2A)
+
+
+LINK MAP OF MODULE:  exp2a (EXP2A)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     8186H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  exp2a (EXP2A)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        EXP2A
+  N:9000H         SYMBOL        ARRAY_BASE
+  D:00F0H         SYMBOL        B
+  C:815BH         SYMBOL        CHECK_LAST
+  C:8184H         SYMBOL        DONE
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  C:8177H         SYMBOL        FOUND
+  N:9500H         SYMBOL        KEY_ADDR
+  C:8156H         SYMBOL        MOVE_RIGHT
+  C:811DH         SYMBOL        NEXT
+  C:817EH         SYMBOL        NOT_FOUND
+  N:9550H         SYMBOL        RESULT
+  C:8125H         SYMBOL        SEARCH_LOOP
+  N:000AH         SYMBOL        SIZE
+  N:0009H         SYMBOL        SIZE_N1
+  C:8102H         SYMBOL        SORT1
+  C:8107H         SYMBOL        SORT2
+  C:8100H         SYMBOL        START
+  C:8100H         LINE#         16
+  C:8102H         LINE#         18
+  C:8104H         LINE#         19
+  C:8107H         LINE#         21
+  C:8108H         LINE#         22
+  C:8109H         LINE#         23
+  C:810AH         LINE#         24
+  C:810BH         LINE#         25
+  C:810DH         LINE#         28
+  C:810EH         LINE#         29
+  C:810FH         LINE#         30
+  C:8111H         LINE#         33
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/14/2026  16:22:22  PAGE 2
+
+
+  C:8113H         LINE#         35
+  C:8115H         LINE#         39
+  C:8116H         LINE#         40
+  C:8117H         LINE#         41
+  C:8119H         LINE#         42
+  C:811BH         LINE#         43
+  C:811CH         LINE#         44
+  C:811DH         LINE#         46
+  C:811FH         LINE#         47
+  C:8121H         LINE#         53
+  C:8123H         LINE#         54
+  C:8125H         LINE#         58
+  C:8126H         LINE#         59
+  C:8127H         LINE#         60
+  C:8128H         LINE#         61
+  C:812AH         LINE#         62
+  C:812CH         LINE#         66
+  C:812DH         LINE#         67
+  C:812EH         LINE#         68
+  C:812FH         LINE#         69
+  C:8130H         LINE#         70
+  C:8131H         LINE#         73
+  C:8134H         LINE#         74
+  C:8135H         LINE#         75
+  C:8137H         LINE#         76
+  C:8139H         LINE#         77
+  C:813BH         LINE#         78
+  C:813DH         LINE#         79
+  C:813FH         LINE#         81
+  C:8140H         LINE#         82
+  C:8141H         LINE#         85
+  C:8144H         LINE#         86
+  C:8145H         LINE#         87
+  C:8147H         LINE#         90
+  C:8148H         LINE#         91
+  C:8149H         LINE#         92
+  C:814BH         LINE#         93
+  C:814DH         LINE#         94
+  C:814FH         LINE#         97
+  C:8150H         LINE#         98
+  C:8152H         LINE#         99
+  C:8153H         LINE#         100
+  C:8154H         LINE#         101
+  C:8156H         LINE#         104
+  C:8157H         LINE#         105
+  C:8158H         LINE#         106
+  C:8159H         LINE#         107
+  C:815BH         LINE#         111
+  C:815EH         LINE#         112
+  C:815FH         LINE#         113
+  C:8161H         LINE#         114
+  C:8163H         LINE#         115
+  C:8165H         LINE#         116
+  C:8167H         LINE#         117
+  C:8169H         LINE#         119
+  C:816AH         LINE#         120
+  C:816BH         LINE#         122
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/14/2026  16:22:22  PAGE 3
+
+
+  C:816EH         LINE#         123
+  C:816FH         LINE#         125
+  C:8170H         LINE#         126
+  C:8171H         LINE#         127
+  C:8173H         LINE#         130
+  C:8174H         LINE#         131
+  C:8175H         LINE#         132
+  C:8177H         LINE#         134
+  C:817AH         LINE#         135
+  C:817BH         LINE#         136
+  C:817CH         LINE#         137
+  C:817EH         LINE#         139
+  C:8181H         LINE#         140
+  C:8183H         LINE#         141
+  C:8184H         LINE#         143
+  -------         ENDMOD        EXP2A
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0086H BYTE ( 6%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33158
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

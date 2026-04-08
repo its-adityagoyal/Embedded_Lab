@@ -1,0 +1,57 @@
+A51 MACRO ASSEMBLER  NIBBLESWAP                                                           01/15/2026 15:37:26 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN nibbleSwap.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE nibbleSwap.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+8100                   1     ORG 8100H
+                       2             
+8100 909000            3         MOV DPTR, #9000H
+8103 E0                4         MOVX A,@DPTR      ; Load value FROM 9000H
+8104 F5F0              5         MOV B, A        ; SAVE A COPY in Register B (Critical Step!)
+                       6         
+8106 540F              7         ANL A, #0FH     ; Mask the upper bits (AND with 0000 1111)
+                       8                         ; 45H (0100 0101) becomes 05H (0000 0101)
+8108 03                9             RR A            
+8109 03               10         RR A
+810A 03               11         RR A
+810B 03               12         RR A                                
+810C F8               13         MOV R0, A      ; Store lower nibble in R0
+                      14     
+                      15         
+810D E5F0             16         MOV A, B        ; Reload the original value from B (45H)
+810F 54F0             17         ANL A, #0F0H    ; Mask the lower bits (AND with 1111 0000)
+                      18                         ; 45H becomes 40H (0100 0000)
+                      19     
+                      20         ; Move the upper nibble down to the lower position
+                      21         ; Since SWAP is banned, we Rotate Right 4 times
+8111 03               22         RR A            
+8112 03               23         RR A
+8113 03               24         RR A
+8114 03               25         RR A            
+                      26             
+8115 28               27             ADD A,R0
+8116 A3               28             INC DPTR
+8117 F0               29         MOVX @DPTR, A      
+                      30     
+8118 80FE             31     HERE: SJMP HERE     ; Stop
+                      32     END
+A51 MACRO ASSEMBLER  NIBBLESWAP                                                           01/15/2026 15:37:26 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+HERE . . . . . . .  C ADDR   8118H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

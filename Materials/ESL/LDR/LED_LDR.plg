@@ -1,0 +1,43 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\TA_SAM\8051\Group1\LDR\LED_LDR.uvproj
+Project File Date:  02/11/2026
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling LED_LDR.A51...
+LED_LDR.A51(8): error A9: SYNTAX ERROR
+LED_LDR.A51(9): error A40: INVALID REGISTER
+Target not created
+Rebuild target 'Target 1'
+assembling LED_LDR.A51...
+LED_LDR.A51(8): error A9: SYNTAX ERROR
+Target not created
+Rebuild target 'Target 1'
+assembling LED_LDR.A51...
+LED_LDR.A51(8): error A9: SYNTAX ERROR
+Target not created
+Rebuild target 'Target 1'
+assembling LED_LDR.A51...
+linking...
+Program Size: data=8.0 xdata=0 code=33089
+creating hex file from "LED_LDR"...
+"LED_LDR" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling LED_LDR.A51...
+LED_LDR.A51(12): error A48: DATA-ADDRESS EXPECTED
+LED_LDR.A51(12): error A48: DATA-ADDRESS EXPECTED
+Target not created
+Build target 'Target 1'
+assembling LED_LDR.A51...
+LED_LDR.A51(13): error A9: SYNTAX ERROR
+LED_LDR.A51(13): error A9: SYNTAX ERROR
+Target not created
+Rebuild target 'Target 1'
+assembling LED_LDR.A51...
+LED_LDR.A51(13): error A9: SYNTAX ERROR
+LED_LDR.A51(13): error A9: SYNTAX ERROR
+Target not created

@@ -1,0 +1,120 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/11/2026  18:19:31  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE LED_LOOP.obj TO LED_LOOP
+
+
+INPUT MODULES INCLUDED:
+  LED_LOOP.obj (LED_LOOP)
+
+
+LINK MAP OF MODULE:  LED_LOOP (LED_LOOP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     8188H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  LED_LOOP (LED_LOOP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LED_LOOP
+  C:814FH         SYMBOL        BLINK
+  C:8170H         SYMBOL        D1
+  C:8172H         SYMBOL        D2
+  C:8174H         SYMBOL        D3
+  C:816EH         SYMBOL        DELAY
+  C:817BH         SYMBOL        DELAY1
+  C:8100H         SYMBOL        INIT
+  C:817DH         SYMBOL        L1
+  C:817FH         SYMBOL        L2
+  C:8181H         SYMBOL        L3
+  C:8102H         SYMBOL        MAIN_LOOP
+  D:0090H         SYMBOL        P1
+  C:8100H         LINE#         4
+  C:8102H         LINE#         9
+  C:8104H         LINE#         10
+  C:8106H         LINE#         11
+  C:8108H         LINE#         12
+  C:810AH         LINE#         13
+  C:810CH         LINE#         15
+  C:810FH         LINE#         16
+  C:8111H         LINE#         19
+  C:8113H         LINE#         20
+  C:8115H         LINE#         21
+  C:8117H         LINE#         22
+  C:8119H         LINE#         23
+  C:811BH         LINE#         25
+  C:811EH         LINE#         26
+  C:8120H         LINE#         29
+  C:8122H         LINE#         30
+  C:8124H         LINE#         31
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/11/2026  18:19:31  PAGE 2
+
+
+  C:8126H         LINE#         32
+  C:8128H         LINE#         33
+  C:812AH         LINE#         35
+  C:812DH         LINE#         36
+  C:812FH         LINE#         39
+  C:8131H         LINE#         40
+  C:8133H         LINE#         41
+  C:8135H         LINE#         42
+  C:8137H         LINE#         43
+  C:8139H         LINE#         45
+  C:813CH         LINE#         46
+  C:813EH         LINE#         49
+  C:8140H         LINE#         50
+  C:8142H         LINE#         51
+  C:8144H         LINE#         52
+  C:8146H         LINE#         53
+  C:8148H         LINE#         55
+  C:814BH         LINE#         56
+  C:814DH         LINE#         58
+  C:814FH         LINE#         65
+  C:8151H         LINE#         66
+  C:8153H         LINE#         67
+  C:8155H         LINE#         68
+  C:8157H         LINE#         69
+  C:8159H         LINE#         70
+  C:815BH         LINE#         73
+  C:815DH         LINE#         74
+  C:815FH         LINE#         75
+  C:8161H         LINE#         76
+  C:8163H         LINE#         77
+  C:8165H         LINE#         78
+  C:8167H         LINE#         81
+  C:8169H         LINE#         82
+  C:816CH         LINE#         83
+  C:816EH         LINE#         89
+  C:8170H         LINE#         90
+  C:8172H         LINE#         91
+  C:8174H         LINE#         92
+  C:8176H         LINE#         93
+  C:8178H         LINE#         94
+  C:817AH         LINE#         95
+  C:817BH         LINE#         98
+  C:817DH         LINE#         99
+  C:817FH         LINE#         100
+  C:8181H         LINE#         101
+  C:8183H         LINE#         102
+  C:8185H         LINE#         103
+  C:8187H         LINE#         104
+  -------         ENDMOD        LED_LOOP
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0088H BYTE ( 6%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33160
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,87 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/11/2026  18:44:07  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE LED_LDR.obj TO LED_LDR
+
+
+INPUT MODULES INCLUDED:
+  LED_LDR.obj (LED_LDR)
+
+
+LINK MAP OF MODULE:  LED_LDR (LED_LDR)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     8141H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  LED_LDR (LED_LDR)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LED_LDR
+  C:8108H         SYMBOL        BLINK
+  C:8129H         SYMBOL        D1
+  C:812BH         SYMBOL        D2
+  C:812DH         SYMBOL        D3
+  C:8127H         SYMBOL        DELAY
+  C:8134H         SYMBOL        DELAY1
+  C:8100H         SYMBOL        INIT
+  C:8136H         SYMBOL        L1
+  C:8138H         SYMBOL        L2
+  C:813AH         SYMBOL        L3
+  C:8102H         SYMBOL        MAIN_LOOP
+  D:0090H         SYMBOL        P1
+  C:8100H         LINE#         4
+  C:8102H         LINE#         8
+  C:8105H         LINE#         9
+  C:8106H         LINE#         11
+  C:8108H         LINE#         15
+  C:810AH         LINE#         16
+  C:810CH         LINE#         17
+  C:810EH         LINE#         18
+  C:8110H         LINE#         19
+  C:8112H         LINE#         20
+  C:8114H         LINE#         23
+  C:8116H         LINE#         24
+  C:8118H         LINE#         25
+  C:811AH         LINE#         26
+  C:811CH         LINE#         27
+  C:811EH         LINE#         28
+  C:8120H         LINE#         31
+  C:8122H         LINE#         32
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/11/2026  18:44:07  PAGE 2
+
+
+  C:8125H         LINE#         33
+  C:8127H         LINE#         37
+  C:8129H         LINE#         38
+  C:812BH         LINE#         39
+  C:812DH         LINE#         40
+  C:812FH         LINE#         41
+  C:8131H         LINE#         42
+  C:8133H         LINE#         43
+  C:8134H         LINE#         46
+  C:8136H         LINE#         47
+  C:8138H         LINE#         48
+  C:813AH         LINE#         49
+  C:813CH         LINE#         50
+  C:813EH         LINE#         51
+  C:8140H         LINE#         52
+  -------         ENDMOD        LED_LDR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0041H BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33089
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

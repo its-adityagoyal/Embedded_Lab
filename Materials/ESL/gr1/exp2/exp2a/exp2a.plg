@@ -1,0 +1,59 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\TA_SAM\8051\exp2\exp2a\exp2a.uvproj
+Project File Date:  01/14/2026
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+Target has no object modules
+Target not created
+Rebuild target 'Target 1'
+assembling exp2a.A51...
+exp2a.A51(33): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(41): error A40: INVALID REGISTER
+exp2a.A51(42): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(56): error A22: EXPRESSION TYPE DOES NOT MATCH INSTRUCTION
+exp2a.A51(74): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(81): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(105): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(110): error A39: REGISTER OPERAND EXPECTED
+Target not created
+Rebuild target 'Target 1'
+assembling exp2a.A51...
+exp2a.A51(33): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(42): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(56): error A22: EXPRESSION TYPE DOES NOT MATCH INSTRUCTION
+exp2a.A51(74): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(81): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(105): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(110): error A39: REGISTER OPERAND EXPECTED
+Target not created
+Rebuild target 'Target 1'
+assembling exp2a.A51...
+exp2a.A51(33): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(42): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(56): error A22: EXPRESSION TYPE DOES NOT MATCH INSTRUCTION
+exp2a.A51(74): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(81): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(105): error A39: REGISTER OPERAND EXPECTED
+exp2a.A51(110): error A39: REGISTER OPERAND EXPECTED
+Target not created
+Rebuild target 'Target 1'
+assembling exp2a.A51...
+exp2a.A51(41): error A40: INVALID REGISTER
+Target not created
+Rebuild target 'Target 1'
+assembling exp2a.A51...
+linking...
+Program Size: data=8.0 xdata=0 code=33158
+creating hex file from "exp2a"...
+"exp2a" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling exp2a.A51...
+linking...
+Program Size: data=8.0 xdata=0 code=33158
+creating hex file from "exp2a"...
+"exp2a" - 0 Error(s), 0 Warning(s).

@@ -1,0 +1,52 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/16/2026  13:19:06  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE oddeven.obj TO oddeven
+
+
+INPUT MODULES INCLUDED:
+  oddeven.obj (ODDEVEN)
+
+
+LINK MAP OF MODULE:  oddeven (ODDEVEN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     8112H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  oddeven (ODDEVEN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ODDEVEN
+  D:00F0H         SYMBOL        B
+  C:810DH         SYMBOL        IS_ODD
+  C:8110H         SYMBOL        STOP
+  C:8100H         LINE#         3
+  C:8103H         LINE#         4
+  C:8104H         LINE#         6
+  C:8105H         LINE#         8
+  C:8108H         LINE#         11
+  C:810AH         LINE#         12
+  C:810BH         LINE#         13
+  C:810DH         LINE#         17
+  C:810FH         LINE#         18
+  C:8110H         LINE#         20
+  -------         ENDMOD        ODDEVEN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0012H BYTE ( 0%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=33042
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

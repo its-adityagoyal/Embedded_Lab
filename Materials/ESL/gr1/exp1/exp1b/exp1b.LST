@@ -1,0 +1,53 @@
+A51 MACRO ASSEMBLER  EXP1B                                                                12/23/2025 16:40:11 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN exp1b.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE exp1b.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+8100                   1     ORG 8100H
+                       2     
+8100 7805              3         MOV R0, #05H
+8102 7909              4         MOV R1, #09H
+                       5         
+                       6         ; Compare Logic
+8104 E8                7         MOV A, R0
+8105 C3                8         CLR C               ; Crucial! Always clear carry before SUBB
+8106 99                9         SUBB A, R1          ; A = R0 - R1
+                      10         
+                      11         ; If R0 < R1, the result is negative, so Carry (C) will be 1.
+8107 4008             12         JC IS_SMALLER       ; Jump if Carry Set
+                      13         
+                      14         ; Else (R0 >= R1)
+8109 90900F           15         MOV DPTR, #900FH
+810C 7400             16         MOV A, #00H
+810E F0               17         MOVX @DPTR, A
+810F 8006             18         SJMP STOP
+                      19     
+8111                  20     IS_SMALLER:
+8111 90900F           21         MOV DPTR, #900FH
+8114 7401             22         MOV A, #01H
+8116 F0               23         MOVX @DPTR, A
+                      24     
+8117                  25     STOP:
+8117 80FE             26         HERE: SJMP HERE
+                      27         END
+A51 MACRO ASSEMBLER  EXP1B                                                                12/23/2025 16:40:11 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+HERE . . . . . . .  C ADDR   8117H   A   
+IS_SMALLER . . . .  C ADDR   8111H   A   
+STOP . . . . . . .  C ADDR   8117H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

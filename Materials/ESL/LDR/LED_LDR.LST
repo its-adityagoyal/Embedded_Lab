@@ -1,0 +1,104 @@
+A51 MACRO ASSEMBLER  LED_LDR                                                              02/11/2026 18:51:35 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+NO OBJECT MODULE REQUESTED
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE LED_LDR.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+8100                   1     ORG 8100H
+                       2     
+8100                   3     INIT:
+8100 D295              4         SETB P1.5           
+                       5     
+                       6      
+8102                   7     MAIN_LOOP:
+                       8         
+                       9             
+8102 909000           10             MOV DPTR, #9000H
+8105 E0               11             MOVX A, @DPTR
+8106 F9               12             MOV R1,A
+8107                  13             MOV P1.5, R1.0
+*** _____________________________________________^
+*** ______________________________________________^
+*** ERROR #A9 IN 13 (LED_LDR.A51, LINE 13): SYNTAX ERROR
+*** ERROR #A9 IN 13 (LED_LDR.A51, LINE 13): SYNTAX ERROR
+8107 0582             14             INC DPL
+                      15             
+                      16             
+                      17             
+8109 2095F6           18             JB P1.5, MAIN_LOOP
+810C 80F4             19     SJMP MAIN_LOOP
+                      20             
+810E                  21     BLINK:
+                      22         
+810E C290             23         CLR P1.0
+8110 C291             24         CLR P1.1
+8112 C292             25         CLR P1.2
+8114 C293             26         CLR P1.3
+8116 C294             27         CLR P1.4
+8118 313A             28         ACALL DELAY1        ; Fast Delay
+                      29     
+                      30         ; 2. Turn ALL ON
+811A D290             31         SETB P1.0
+811C D291             32         SETB P1.1
+811E D292             33         SETB P1.2
+8120 D293             34         SETB P1.3
+8122 D294             35         SETB P1.4
+8124 313A             36         ACALL DELAY1        ; Fast Delay
+                      37     
+                      38         
+8126 D295             39         SETB P1.5           ; Ensure Input mode is still set
+8128 3095D7           40         JNB P1.5, MAIN_LOOP ; If P1.5 is Low (Open), go back to Main
+812B 80E1             41         SJMP BLINK          ; Else, keep blinking
+                      42     
+                      43     
+812D                  44     DELAY:                  ; ~1.0 Second Delay
+812D 7D0A             45         MOV R5, #10         
+812F 7EC8             46     D1: MOV R6, #200        
+8131 7FFA             47     D2: MOV R7, #250        
+8133 DFFE             48     D3: DJNZ R7, D3
+8135 DEFA             49         DJNZ R6, D2
+8137 DDF6             50         DJNZ R5, D1
+8139 22               51         RET
+                      52     
+813A                  53     DELAY1:                 ; ~0.1 Second Delay (Faster Blink)
+813A 7801             54         MOV R0, #1          
+A51 MACRO ASSEMBLER  LED_LDR                                                              02/11/2026 18:51:35 PAGE     2
+
+813C 79C8             55     L1: MOV R1, #200        
+813E 7AFA             56     L2: MOV R2, #250        
+8140 DAFE             57     L3: DJNZ R2, L3
+8142 D9FA             58         DJNZ R1, L2
+8144 D8F6             59         DJNZ R0, L1
+8146 22               60         RET
+                      61         
+                      62         END
+A51 MACRO ASSEMBLER  LED_LDR                                                              02/11/2026 18:51:35 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BLINK. . . . . . .  C ADDR   810EH   A   
+D1 . . . . . . . .  C ADDR   812FH   A   
+D2 . . . . . . . .  C ADDR   8131H   A   
+D3 . . . . . . . .  C ADDR   8133H   A   
+DELAY. . . . . . .  C ADDR   812DH   A   
+DELAY1 . . . . . .  C ADDR   813AH   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+INIT . . . . . . .  C ADDR   8100H   A   
+L1 . . . . . . . .  C ADDR   813CH   A   
+L2 . . . . . . . .  C ADDR   813EH   A   
+L3 . . . . . . . .  C ADDR   8140H   A   
+MAIN_LOOP. . . . .  C ADDR   8102H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 2 ERROR(S)

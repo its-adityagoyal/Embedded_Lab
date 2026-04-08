@@ -1,0 +1,49 @@
+A51 MACRO ASSEMBLER  ODDEVEN                                                              01/16/2026 13:19:24 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+NO OBJECT MODULE REQUESTED
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE oddeven.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+8100                   1     ORG 8100H
+                       2     
+8100 909000            3         MOV DPTR, #9000H ; Point to input address
+8103 E0                4         MOVX A, @DPTR    ; Read input data from 9000H into A
+                       5     
+8104 A3                6         INC DPTR         ; Increment DPTR to 9001H (for output)
+                       7         
+8105                   8         JB SP.0, IS_ODD ; Check LSB (Bit 0). If 1, Jump to ODD.
+*** ________________________________^
+*** ERROR #A17 IN 8 (oddeven.A51, LINE 8): INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+                       9     
+                      10         ; --- EVEN CASE ---
+8105 74EE             11         MOV A, #0EEH     ; Load 'EE' into Accumulator first
+8107 F0               12         MOVX @DPTR, A    ; Move Accumulator to External Memory (9001H)
+8108 8003             13         SJMP STOP        ; Jump to end
+                      14     
+810A                  15     IS_ODD:
+                      16         ; --- ODD CASE ---
+810A 74DD             17         MOV A, #0DDH     ; Load 'DD' into Accumulator first
+810C F0               18         MOVX @DPTR, A    ; Move Accumulator to External Memory (9001H)
+                      19     
+810D 80FE             20     STOP: SJMP STOP      ; Infinite loop
+                      21     END
+A51 MACRO ASSEMBLER  ODDEVEN                                                              01/16/2026 13:19:24 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+IS_ODD . . . . . .  C ADDR   810AH   A   
+SP . . . . . . . .  D ADDR   0081H   A   
+STOP . . . . . . .  C ADDR   810DH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 1 ERROR(S)

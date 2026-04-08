@@ -1,0 +1,143 @@
+A51 MACRO ASSEMBLER  LED_LOOP                                                             02/11/2026 18:19:31 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN LED_LOOP.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE LED_LOOP.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+8100                   1     ORG 8100H
+                       2     
+8100                   3     INIT:
+8100 D295              4         SETB P1.5           ; CRITICAL: Configure P1.5 as Input pin!
+                       5                             ; Without this, the LDR cannot control the pin.
+                       6     
+8102                   7     MAIN_LOOP:
+                       8         ; --- Step 1: 00001 (LED 1 ON) ---
+8102 D290              9         SETB P1.0
+8104 C291             10         CLR P1.1
+8106 C292             11         CLR P1.2
+8108 C293             12         CLR P1.3
+810A C294             13         CLR P1.4
+                      14         
+810C 209540           15         JB P1.5, BLINK      ; Check Sensor
+810F 316E             16         ACALL DELAY         ; Wait
+                      17     
+                      18         ; --- Step 2: 00010 (LED 2 ON) ---
+8111 C290             19         CLR P1.0
+8113 D291             20         SETB P1.1
+8115 C292             21         CLR P1.2
+8117 C293             22         CLR P1.3
+8119 C294             23         CLR P1.4
+                      24         
+811B 209531           25         JB P1.5, BLINK      ; Check Sensor
+811E 316E             26         ACALL DELAY
+                      27     
+                      28         ; --- Step 3: 00100 (LED 3 ON) ---
+8120 C290             29         CLR P1.0
+8122 C291             30         CLR P1.1
+8124 D292             31         SETB P1.2
+8126 C293             32         CLR P1.3
+8128 C294             33         CLR P1.4
+                      34         
+812A 209522           35         JB P1.5, BLINK      ; Check Sensor
+812D 316E             36         ACALL DELAY
+                      37     
+                      38         ; --- Step 4: 01000 (LED 4 ON) ---
+812F C290             39         CLR P1.0
+8131 C291             40         CLR P1.1
+8133 C292             41         CLR P1.2
+8135 D293             42         SETB P1.3
+8137 C294             43         CLR P1.4
+                      44         
+8139 209513           45         JB P1.5, BLINK      ; Check Sensor
+813C 316E             46         ACALL DELAY
+                      47     
+                      48         ; --- Step 5: 10000 (LED 5 ON) ---
+813E C290             49         CLR P1.0
+8140 C291             50         CLR P1.1
+8142 C292             51         CLR P1.2
+8144 C293             52         CLR P1.3
+8146 D294             53         SETB P1.4
+                      54         
+8148 209504           55         JB P1.5, BLINK      ; Check Sensor
+814B 316E             56         ACALL DELAY
+                      57                 
+814D 80B3             58         SJMP MAIN_LOOP      ; Repeat Sequence
+A51 MACRO ASSEMBLER  LED_LOOP                                                             02/11/2026 18:19:31 PAGE     2
+
+                      59     
+                      60     ;-----------------------------------
+                      61     ; BLINK MODE ROUTINE
+                      62     ;-----------------------------------
+814F                  63     BLINK:
+                      64         ; 1. Turn ALL OFF
+814F C290             65         CLR P1.0
+8151 C291             66         CLR P1.1
+8153 C292             67         CLR P1.2
+8155 C293             68         CLR P1.3
+8157 C294             69         CLR P1.4
+8159 317B             70         ACALL DELAY1        ; Fast Delay
+                      71     
+                      72         ; 2. Turn ALL ON
+815B D290             73         SETB P1.0
+815D D291             74         SETB P1.1
+815F D292             75         SETB P1.2
+8161 D293             76         SETB P1.3
+8163 D294             77         SETB P1.4
+8165 317B             78         ACALL DELAY1        ; Fast Delay
+                      79     
+                      80         ; 3. Check Sensor to Exit
+8167 D295             81         SETB P1.5           ; Ensure Input mode is still set
+8169 309596           82         JNB P1.5, MAIN_LOOP ; If P1.5 is Low (Open), go back to Main
+816C 80E1             83         SJMP BLINK          ; Else, keep blinking
+                      84     
+                      85     ;-----------------------------------
+                      86     ; DELAY SUBROUTINES
+                      87     ;-----------------------------------
+816E                  88     DELAY:                  ; ~1.0 Second Delay
+816E 7D0A             89         MOV R5, #10         
+8170 7EC8             90     D1: MOV R6, #200        
+8172 7FFA             91     D2: MOV R7, #250        
+8174 DFFE             92     D3: DJNZ R7, D3
+8176 DEFA             93         DJNZ R6, D2
+8178 DDF6             94         DJNZ R5, D1
+817A 22               95         RET
+                      96     
+817B                  97     DELAY1:                 ; ~0.1 Second Delay (Faster Blink)
+817B 7801             98         MOV R0, #1          
+817D 79C8             99     L1: MOV R1, #200        
+817F 7AFA            100     L2: MOV R2, #250        
+8181 DAFE            101     L3: DJNZ R2, L3
+8183 D9FA            102         DJNZ R1, L2
+8185 D8F6            103         DJNZ R0, L1
+8187 22              104         RET
+                     105         
+                     106         END
+A51 MACRO ASSEMBLER  LED_LOOP                                                             02/11/2026 18:19:31 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BLINK. . . . . . .  C ADDR   814FH   A   
+D1 . . . . . . . .  C ADDR   8170H   A   
+D2 . . . . . . . .  C ADDR   8172H   A   
+D3 . . . . . . . .  C ADDR   8174H   A   
+DELAY. . . . . . .  C ADDR   816EH   A   
+DELAY1 . . . . . .  C ADDR   817BH   A   
+INIT . . . . . . .  C ADDR   8100H   A   
+L1 . . . . . . . .  C ADDR   817DH   A   
+L2 . . . . . . . .  C ADDR   817FH   A   
+L3 . . . . . . . .  C ADDR   8181H   A   
+MAIN_LOOP. . . . .  C ADDR   8102H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
